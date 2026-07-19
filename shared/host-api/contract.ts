@@ -80,6 +80,7 @@ export type DialogMessageResult = {
   checkboxChecked?: boolean;
 };
 export type WindowSyncTrafficLightPayload = { sidebarCollapsed: boolean };
+export type WindowSetKioskPayload = { enabled: boolean };
 export type UpdateChannel = 'stable' | 'beta' | 'dev';
 export type UpdateInfoSnapshot = {
   version: string;
@@ -126,6 +127,8 @@ export type SettingsSnapshot = Partial<{
   chatWorkspacePath: string;
   recentWorkspacePaths: string[];
   workspaceLabels: Record<string, string>;
+  composioUrl: string;
+  composioKioskAutostart: boolean;
 }>;
 export type SettingsKey = keyof SettingsSnapshot & string;
 export type SettingsValue = SettingsSnapshot[SettingsKey];
@@ -790,6 +793,8 @@ export type HostApiContract = {
     maximize: () => void;
     close: () => void;
     isMaximized: () => boolean;
+    setKiosk: (payload: WindowSetKioskPayload) => boolean;
+    isKiosk: () => boolean;
   };
   updates: {
     status: () => UpdateStatusSnapshot;

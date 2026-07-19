@@ -21,5 +21,17 @@ export function createWindowApi(mainWindow: BrowserWindow): CompleteHostServiceR
       mainWindow.close();
     },
     isMaximized: () => mainWindow.isMaximized(),
+    setKiosk: (payload) => {
+      const enabled = Boolean(payload?.enabled);
+      // Keep fullscreen and kiosk in sync so the window is truly edge-to-edge
+      // on every platform (on Linux setKiosk maps to fullscreen already, but
+      // toggling both keeps behaviour consistent and reversible).
+      mainWindow.setKiosk(enabled);
+      if (mainWindow.isFullScreen() !== enabled) {
+        mainWindow.setFullScreen(enabled);
+      }
+      return mainWindow.isKiosk();
+    },
+    isKiosk: () => mainWindow.isKiosk(),
   };
 }

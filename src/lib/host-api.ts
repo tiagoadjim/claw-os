@@ -126,6 +126,8 @@ export const hostApi = {
     maximize: () => invokeHost('window', 'maximize'),
     close: () => invokeHost('window', 'close'),
     isMaximized: () => invokeHost('window', 'isMaximized'),
+    setKiosk: (enabled: boolean) => invokeHost('window', 'setKiosk', { enabled }),
+    isKiosk: () => invokeHost('window', 'isKiosk'),
   },
   updates: {
     status: () => invokeHost('updates', 'status'),
