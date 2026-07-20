@@ -25,7 +25,7 @@
         "title": "Composio",
         "reload": "再読み込み",
         "openExternal": "ブラウザで開く",
-        "kioskMode": "キオスクモード",
+        "kioskMode": "本番モード",
         "goToPc": "PCへ移動",
         "errorTitle": "Composio を読み込めませんでした",
         "errorDesc": "インターネット接続と Composio の URL を確認して、もう一度お試しください。",

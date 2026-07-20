@@ -15,11 +15,11 @@
   },
   "composio": {
     "title": "Composio",
-    "description": "原生嵌入 Composio，并以全屏 Kiosk 模式启动。",
+    "description": "原生嵌入 Composio，并以全屏生产模式启动。",
     "url": "Composio 地址",
     "urlDesc": "要加载的 Composio 网址，默认为 https://app.composio.dev。",
-    "kioskAutostart": "启动时以 Kiosk 模式打开 Composio",
-    "kioskAutostartDesc": "应用启动时自动全屏打开 Composio，并同时开启开机自启动。"
+    "kioskAutostart": "启动时以生产模式打开 Composio",
+    "kioskAutostartDesc": "应用启动时自动全屏（生产模式）打开 Composio，并同时开启开机自启动。你也可以在初始引导中切换此项。"
   },
   "aiProviders": {
     "title": "AI 模型提供商",

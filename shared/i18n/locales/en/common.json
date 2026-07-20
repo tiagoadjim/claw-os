@@ -25,7 +25,7 @@
         "title": "Composio",
         "reload": "Reload",
         "openExternal": "Open in browser",
-        "kioskMode": "Kiosk mode",
+        "kioskMode": "Production Mode",
         "goToPc": "Go to PC",
         "errorTitle": "Couldn't load Composio",
         "errorDesc": "Check your internet connection and the Composio URL, then try again.",

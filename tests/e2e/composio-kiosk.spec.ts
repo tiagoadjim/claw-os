@@ -52,6 +52,11 @@ test.describe('Composio kiosk integration', () => {
       await page.getByTestId('sidebar-nav-settings').click();
       await expect(page.getByTestId('settings-composio')).toBeVisible();
 
+      // The feature is surfaced to users as "Production Mode".
+      await expect(
+        page.getByTestId('settings-composio').getByText('Production Mode', { exact: false }),
+      ).toBeVisible();
+
       const kioskSwitch = page.getByTestId('settings-composio-kiosk');
       await expect(kioskSwitch).toHaveAttribute('data-state', 'unchecked');
 

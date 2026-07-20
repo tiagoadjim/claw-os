@@ -25,7 +25,7 @@
         "title": "Composio",
         "reload": "重新加载",
         "openExternal": "在浏览器中打开",
-        "kioskMode": "Kiosk 模式",
+        "kioskMode": "生产模式",
         "goToPc": "前往电脑",
         "errorTitle": "无法加载 Composio",
         "errorDesc": "请检查网络连接和 Composio 地址后重试。",

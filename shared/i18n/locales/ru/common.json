@@ -25,7 +25,7 @@
         "title": "Composio",
         "reload": "Обновить",
         "openExternal": "Открыть в браузере",
-        "kioskMode": "Режим киоска",
+        "kioskMode": "Производственный режим",
         "goToPc": "Перейти к ПК",
         "errorTitle": "Не удалось загрузить Composio",
         "errorDesc": "Проверьте подключение к интернету и адрес Composio, затем повторите попытку.",
