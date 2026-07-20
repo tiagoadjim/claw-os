@@ -15,11 +15,21 @@
   },
   "composio": {
     "title": "Composio",
-    "description": "原生嵌入 Composio，并以全屏生产模式启动。",
-    "url": "Composio 地址",
-    "urlDesc": "要加载的 Composio 网址，默认为 https://app.composio.dev。",
-    "kioskAutostart": "启动时以生产模式打开 Composio",
-    "kioskAutostartDesc": "应用启动时自动全屏（生产模式）打开 Composio，并同时开启开机自启动。你也可以在初始引导中切换此项。"
+    "description": "连接 Composio，让你的 OpenClaw 智能体可以将数百种第三方应用集成（Gmail、Slack、GitHub 等）作为工具使用。",
+    "enable": "启用 Composio 工具",
+    "enableDesc": "在聊天中把你的 Composio MCP 服务器提供给 OpenClaw 智能体。",
+    "apiKey": "Composio API 密钥",
+    "apiKeyDesc": "来自 Composio 控制台 → 设置 → API Keys。仅本地保存，并只作为 X-API-Key 请求头发送到你的 MCP 服务器。",
+    "apiKeyPlaceholder": "粘贴你的 Composio API 密钥",
+    "mcpUrl": "Composio MCP 地址",
+    "mcpUrlDesc": "在 Composio 控制台为你的账户生成的 MCP 服务器地址。",
+    "mcpUrlPlaceholder": "https://mcp.composio.dev/…",
+    "keySaved": "已保存 API 密钥",
+    "keyNotSet": "未保存 API 密钥",
+    "clearKey": "清除密钥",
+    "save": "保存",
+    "saved": "已保存 Composio 设置",
+    "docs": "打开 Composio 文档"
   },
   "aiProviders": {
     "title": "AI 模型提供商",

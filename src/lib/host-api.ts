@@ -9,6 +9,7 @@ import type {
   ChannelTargetsPayload,
   ChatSendWithMediaPayload,
   ClawHubSearchPayload,
+  ComposioSetConfigPayload,
   CronSessionHistoryPayload,
   DialogMessagePayload,
   DialogOpenPayload,
@@ -62,6 +63,7 @@ export type {
   ChannelTargetsResult,
   ChatSendWithMediaResult,
   ClawHubInstalledSkill,
+  ComposioConfigResult,
   ClawHubListResult,
   ClawHubSearchResult,
   CronSessionHistoryResult,
@@ -126,8 +128,6 @@ export const hostApi = {
     maximize: () => invokeHost('window', 'maximize'),
     close: () => invokeHost('window', 'close'),
     isMaximized: () => invokeHost('window', 'isMaximized'),
-    setKiosk: (enabled: boolean) => invokeHost('window', 'setKiosk', { enabled }),
-    isKiosk: () => invokeHost('window', 'isKiosk'),
   },
   updates: {
     status: () => invokeHost('updates', 'status'),
@@ -380,6 +380,10 @@ export const hostApi = {
     recentTokenHistory: (limit?: number) => (
       invokeHost('usage', 'recentTokenHistory', { limit })
     ),
+  },
+  composio: {
+    getConfig: () => invokeHost('composio', 'getConfig'),
+    setConfig: (patch: ComposioSetConfigPayload) => invokeHost('composio', 'setConfig', patch),
   },
 };
 

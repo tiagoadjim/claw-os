@@ -120,10 +120,6 @@
         "running": "Running",
         "footer": "You can customize skills and connect channels in Settings"
     },
-    "productionMode": {
-        "label": "Production Mode",
-        "description": "Launch Composio full-screen automatically at startup (also runs when the PC powers on). Optional — you can change this later in Settings → Composio."
-    },
     "nav": {
         "next": "Next",
         "back": "Back",

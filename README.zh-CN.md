@@ -141,8 +141,8 @@ Z.AI（国内站 / 国际站）会映射到 OpenClaw 内置的 `zai` 供应商�
 ### 🚀 开机启动控制
 在 **设置 → 通用** 中，你可以开启 **开机自动启动**，让 ClawX 在系统登录后自动启动。
 
-### 🖥️ Composio 与生产模式
-ClawX 原生嵌入了 [Composio](https://composio.dev)，作为独立页面（从侧边栏打开）。**生产模式** 会在启动时全屏打开 Composio——此项为可选，可在初始引导中切换，或稍后在 **设置 → Composio** 中开启（同时会开启开机自启动，使其在开机时运行）。通过 **前往电脑** 按钮（或按 `Esc`）即可退出生产模式并返回常规界面。Composio 地址可在设置中配置。
+### 🧩 Composio 集成
+连接 [Composio](https://composio.dev)，让你的 OpenClaw 智能体可以将数百种第三方应用集成（Gmail、Slack、GitHub 等）作为工具使用。在 **设置 → Composio** 中，粘贴你的 Composio **API 密钥** 和为你的账户生成的 **MCP 地址**，然后启用——ClawX 会把 Composio 注册为聊天会话的 MCP 服务器。API 密钥保存在应用的本地安全存储中，且仅作为 `X-API-Key` 请求头发送到你的 Composio MCP 端点。
 
 ### 🔔 更新提示
 ClawX 可以在启动时自动检查新版本。发现更新后会显示应用内提示；只有在你选择操作后，才会下载或安装更新。

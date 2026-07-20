@@ -15,11 +15,21 @@
   },
   "composio": {
     "title": "Composio",
-    "description": "Встроенная интеграция Composio с запуском в полноэкранном производственном режиме.",
-    "url": "URL Composio",
-    "urlDesc": "Веб-адрес Composio для загрузки. По умолчанию https://app.composio.dev.",
-    "kioskAutostart": "Запускать Composio в производственном режиме при старте",
-    "kioskAutostartDesc": "Автоматически открывать Composio на весь экран (производственный режим) при запуске приложения. Также включает автозапуск при старте системы. Это также можно включить во время первичной настройки."
+    "description": "Подключите Composio, чтобы агенты OpenClaw могли использовать сотни интеграций со сторонними приложениями (Gmail, Slack, GitHub и др.) как инструменты.",
+    "enable": "Включить инструменты Composio",
+    "enableDesc": "Предоставить ваш MCP-сервер Composio агентам OpenClaw в чате.",
+    "apiKey": "API-ключ Composio",
+    "apiKeyDesc": "Из панели Composio → Settings → API Keys. Хранится локально и отправляется на ваш MCP-сервер только в заголовке X-API-Key.",
+    "apiKeyPlaceholder": "Вставьте ваш API-ключ Composio",
+    "mcpUrl": "URL MCP Composio",
+    "mcpUrlDesc": "URL MCP-сервера, сгенерированный для вашей учётной записи в панели Composio.",
+    "mcpUrlPlaceholder": "https://mcp.composio.dev/…",
+    "keySaved": "API-ключ сохранён",
+    "keyNotSet": "API-ключ не сохранён",
+    "clearKey": "Очистить ключ",
+    "save": "Сохранить",
+    "saved": "Настройки Composio сохранены",
+    "docs": "Открыть документацию Composio"
   },
   "aiProviders": {
     "title": "AI-провайдеры",

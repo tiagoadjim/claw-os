@@ -54,6 +54,7 @@ import { createUvApi } from '../services/uv-api';
 import { createGatewayApi } from '../services/gateway-api';
 import { createLogsApi } from '../services/logs-api';
 import { createSettingsApi } from '../services/settings-api';
+import { createComposioApi } from '../services/composio-api';
 import { createChannelsApi } from '../services/channels-api';
 import { createAgentsApi } from '../services/agents-api';
 import { createChatApi } from '../services/chat-api';
@@ -162,6 +163,7 @@ function registerTypedHostHandlers(
     cron: createCronApi({ gatewayManager }),
     skills: createSkillsApi({ clawHubService, gatewayManager }),
     usage: createUsageApi(),
+    composio: createComposioApi(),
   });
   registerHostInvokeHandler(hostApiRegistry);
 }

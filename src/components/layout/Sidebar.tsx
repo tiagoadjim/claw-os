@@ -21,7 +21,6 @@ import {
   Check,
   X,
   Cpu,
-  Monitor,
   ImagePlus,
   Moon,
   ChevronRight,
@@ -419,12 +418,6 @@ export function Sidebar() {
       icon: <Clock className="h-4 w-4" strokeWidth={2} />,
       label: t('sidebar.cronTasks'),
       testId: 'sidebar-nav-cron',
-    },
-    {
-      to: '/composio',
-      icon: <Monitor className="h-4 w-4" strokeWidth={2} />,
-      label: t('sidebar.composio'),
-      testId: 'sidebar-nav-composio',
     },
     ...(devModeUnlocked
       ? [

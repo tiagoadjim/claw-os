@@ -140,8 +140,8 @@ Light mode, dark mode, or system-synchronized themes. ClawX adapts to your prefe
 ### 🚀 Startup Launch Control
 In **Settings → General**, you can enable **Launch at system startup** so ClawX starts automatically after login.
 
-### 🖥️ Composio & Production Mode
-ClawX embeds [Composio](https://composio.dev) natively as a dedicated page (open it from the sidebar). **Production Mode** launches Composio full-screen at startup — it's optional and can be toggled during the initial onboarding or later in **Settings → Composio** (it also turns on launch-at-startup so it runs when the PC powers on). A **Go to PC** button (or `Esc`) leaves Production Mode and returns to the regular app. The Composio URL is configurable in Settings.
+### 🧩 Composio Integration
+Connect [Composio](https://composio.dev) so your OpenClaw agents can use hundreds of third-party app integrations (Gmail, Slack, GitHub, …) as tools. In **Settings → Composio**, paste your Composio **API key** and the **MCP URL** generated for your account, then enable it — ClawX registers Composio as an MCP server for your chat sessions. The API key is stored locally in the app's secure store and is only ever sent as the `X-API-Key` header to your Composio MCP endpoint.
 
 ### 🔔 Update Prompts
 ClawX can automatically check for new versions on startup. When an update is available, it shows an in-app prompt; downloading and installing only happen after you choose the action.

@@ -15,11 +15,21 @@
   },
   "composio": {
     "title": "Composio",
-    "description": "Embed Composio natively and launch it in full-screen Production Mode.",
-    "url": "Composio URL",
-    "urlDesc": "The Composio web address to load. Defaults to https://app.composio.dev.",
-    "kioskAutostart": "Launch Composio in Production Mode at startup",
-    "kioskAutostartDesc": "Open Composio full-screen (Production Mode) automatically when the app starts. Also enables launch at system startup. You can also toggle this during onboarding."
+    "description": "Connect Composio so your OpenClaw agents can use hundreds of third-party app integrations (Gmail, Slack, GitHub, …) as tools.",
+    "enable": "Enable Composio tools",
+    "enableDesc": "Expose your Composio MCP server to OpenClaw agents in chat.",
+    "apiKey": "Composio API key",
+    "apiKeyDesc": "From the Composio dashboard → Settings → API Keys. Stored locally and sent only as the X-API-Key header to your MCP server.",
+    "apiKeyPlaceholder": "Paste your Composio API key",
+    "mcpUrl": "Composio MCP URL",
+    "mcpUrlDesc": "The MCP server URL generated for your account in the Composio dashboard.",
+    "mcpUrlPlaceholder": "https://mcp.composio.dev/…",
+    "keySaved": "API key saved",
+    "keyNotSet": "No API key saved",
+    "clearKey": "Clear key",
+    "save": "Save",
+    "saved": "Composio settings saved",
+    "docs": "Open Composio docs"
   },
   "aiProviders": {
     "title": "AI Providers",

@@ -15,6 +15,7 @@ import { useSettingsStore } from '@/stores/settings';
 import { useGatewayStore } from '@/stores/gateway';
 import { useUpdateStore } from '@/stores/update';
 import { UpdateSettings } from '@/components/settings/UpdateSettings';
+import { ComposioSettings } from '@/components/settings/ComposioSettings';
 import { toUserMessage } from '@/lib/error-message';
 import {
   clearUiTelemetry,
@@ -43,10 +44,6 @@ export function Settings() {
     setLanguage,
     launchAtStartup,
     setLaunchAtStartup,
-    composioUrl,
-    setComposioUrl,
-    composioKioskAutostart,
-    setComposioKioskAutostart,
     gatewayAutoStart,
     setGatewayAutoStart,
     proxyEnabled,
@@ -74,7 +71,6 @@ export function Settings() {
   const [controlUiInfo, setControlUiInfo] = useState<ControlUiInfo | null>(null);
   const [openclawCliCommand, setOpenclawCliCommand] = useState('');
   const [openclawCliError, setOpenclawCliError] = useState<string | null>(null);
-  const [composioUrlDraft, setComposioUrlDraft] = useState('');
   const [proxyServerDraft, setProxyServerDraft] = useState('');
   const [proxyHttpServerDraft, setProxyHttpServerDraft] = useState('');
   const [proxyHttpsServerDraft, setProxyHttpsServerDraft] = useState('');
@@ -248,19 +244,6 @@ export function Settings() {
     });
     return unsubscribe;
   }, [devModeUnlocked]);
-
-  useEffect(() => {
-    setComposioUrlDraft(composioUrl);
-  }, [composioUrl]);
-
-  const commitComposioUrl = () => {
-    const next = composioUrlDraft.trim();
-    if (next && next !== composioUrl) {
-      setComposioUrl(next);
-    } else {
-      setComposioUrlDraft(composioUrl);
-    }
-  };
 
   useEffect(() => {
     setProxyEnabledDraft(proxyEnabled);
@@ -529,42 +512,7 @@ export function Settings() {
           <Separator className="bg-black/5 dark:bg-white/5" />
 
           {/* Composio */}
-          <div data-testid="settings-composio">
-            <h2 className="text-3xl font-serif text-foreground mb-2 font-normal tracking-tight">
-              {t('composio.title')}
-            </h2>
-            <p className="text-meta text-muted-foreground mb-6">{t('composio.description')}</p>
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('composio.url')}</Label>
-                <Input
-                  data-testid="settings-composio-url"
-                  value={composioUrlDraft}
-                  onChange={(event) => setComposioUrlDraft(event.target.value)}
-                  onBlur={commitComposioUrl}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                      event.currentTarget.blur();
-                    }
-                  }}
-                  placeholder="https://app.composio.dev"
-                  className="max-w-md"
-                />
-                <p className="text-meta text-muted-foreground">{t('composio.urlDesc')}</p>
-              </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-medium text-foreground/80">{t('composio.kioskAutostart')}</Label>
-                  <p className="text-meta text-muted-foreground mt-1">{t('composio.kioskAutostartDesc')}</p>
-                </div>
-                <Switch
-                  data-testid="settings-composio-kiosk"
-                  checked={composioKioskAutostart}
-                  onCheckedChange={setComposioKioskAutostart}
-                />
-              </div>
-            </div>
-          </div>
+          <ComposioSettings />
 
           <Separator className="bg-black/5 dark:bg-white/5" />
 

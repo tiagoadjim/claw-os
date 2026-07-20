@@ -238,27 +238,6 @@ function createWindow(): BrowserWindow {
   return win;
 }
 
-/**
- * Enter kiosk (full-screen) mode on startup when the user has opted into the
- * Composio kiosk experience, so the window is edge-to-edge from the first
- * paint. The renderer navigates to the Composio page once settings load.
- */
-async function applyComposioKioskAutostart(win: BrowserWindow): Promise<void> {
-  try {
-    const enabled = await getSetting('composioKioskAutostart');
-    if (!enabled || win.isDestroyed()) {
-      return;
-    }
-    win.setKiosk(true);
-    if (!win.isFullScreen()) {
-      win.setFullScreen(true);
-    }
-    logger.info('Composio kiosk autostart enabled: entering kiosk mode');
-  } catch (error) {
-    logger.error('Failed to apply Composio kiosk autostart:', error);
-  }
-}
-
 function focusWindow(win: BrowserWindow): void {
   if (win.isDestroyed()) {
     return;
@@ -294,10 +273,6 @@ function createMainWindow(): BrowserWindow {
         syncMacTrafficLightPosition(win, sidebarCollapsed);
       });
     }
-
-    // Enter kiosk mode before showing so there is no windowed flash when the
-    // user has opted into the Composio kiosk autostart experience.
-    void applyComposioKioskAutostart(win);
 
     const action = consumeMainWindowReady(mainWindowFocusState);
     if (action === 'focus') {
