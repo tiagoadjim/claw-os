@@ -57,8 +57,8 @@ export interface AppSettings {
   workspaceLabels: Record<string, string>;
 
   // Composio
-  composioUrl: string;
-  composioKioskAutostart: boolean;
+  composioEnabled: boolean;
+  composioMcpUrl: string;
 
   // Presets
   selectedBundles: string[];
@@ -115,8 +115,8 @@ function createDefaultSettings(): AppSettings {
     workspaceLabels: {},
 
     // Composio
-    composioUrl: 'https://app.composio.dev',
-    composioKioskAutostart: false,
+    composioEnabled: false,
+    composioMcpUrl: '',
 
     // Presets
     selectedBundles: ['productivity', 'developer'],

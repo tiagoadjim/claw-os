@@ -80,7 +80,6 @@ export type DialogMessageResult = {
   checkboxChecked?: boolean;
 };
 export type WindowSyncTrafficLightPayload = { sidebarCollapsed: boolean };
-export type WindowSetKioskPayload = { enabled: boolean };
 export type UpdateChannel = 'stable' | 'beta' | 'dev';
 export type UpdateInfoSnapshot = {
   version: string;
@@ -127,8 +126,6 @@ export type SettingsSnapshot = Partial<{
   chatWorkspacePath: string;
   recentWorkspacePaths: string[];
   workspaceLabels: Record<string, string>;
-  composioUrl: string;
-  composioKioskAutostart: boolean;
 }>;
 export type SettingsKey = keyof SettingsSnapshot & string;
 export type SettingsValue = SettingsSnapshot[SettingsKey];
@@ -769,6 +766,18 @@ export type DeliveryChannelGroup = {
 };
 export type DeliveryTargetsResult = HostSuccess & { targets: DeliveryChannelGroup[] };
 
+export type ComposioConfigResult = {
+  enabled: boolean;
+  mcpUrl: string;
+  hasApiKey: boolean;
+  apiKeyMasked: string | null;
+};
+export type ComposioSetConfigPayload = {
+  enabled?: boolean;
+  mcpUrl?: string;
+  apiKey?: string;
+};
+
 export type HostApiContract = {
   app: {
     openClawDoctor: (payload: OpenClawDoctorPayload) => Omit<OpenClawDoctorResult, 'mode'>;
@@ -793,8 +802,6 @@ export type HostApiContract = {
     maximize: () => void;
     close: () => void;
     isMaximized: () => boolean;
-    setKiosk: (payload: WindowSetKioskPayload) => boolean;
-    isKiosk: () => boolean;
   };
   updates: {
     status: () => UpdateStatusSnapshot;
@@ -966,6 +973,10 @@ export type HostApiContract = {
   };
   usage: {
     recentTokenHistory: (payload?: UsageHistoryPayload) => UsageHistoryEntry[];
+  };
+  composio: {
+    getConfig: () => ComposioConfigResult;
+    setConfig: (payload: ComposioSetConfigPayload) => HostSuccess;
   };
 };
 

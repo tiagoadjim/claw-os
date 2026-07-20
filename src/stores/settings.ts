@@ -42,10 +42,6 @@ interface SettingsState {
   recentWorkspacePaths: string[];
   workspaceLabels: Record<string, string>;
 
-  // Composio
-  composioUrl: string;
-  composioKioskAutostart: boolean;
-
   // Setup
   setupComplete: boolean;
 
@@ -71,8 +67,6 @@ interface SettingsState {
   setDevModeUnlocked: (value: boolean) => void;
   setChatWorkspacePath: (workspacePath: string) => void;
   setWorkspaceLabel: (workspacePath: string, label: string) => void;
-  setComposioUrl: (value: string) => void;
-  setComposioKioskAutostart: (value: boolean) => void;
   markSetupComplete: () => void;
   resetSettings: () => void;
 }
@@ -99,19 +93,8 @@ const defaultSettings = {
   chatWorkspacePath: DEFAULT_WORKSPACE_CWD,
   recentWorkspacePaths: [DEFAULT_WORKSPACE_CWD],
   workspaceLabels: {},
-  composioUrl: 'https://app.composio.dev',
-  composioKioskAutostart: false,
   setupComplete: false,
 };
-
-const DEFAULT_COMPOSIO_URL = 'https://app.composio.dev';
-
-function normalizeComposioUrl(value: string): string {
-  const trimmed = value.trim();
-  if (!trimmed) return DEFAULT_COMPOSIO_URL;
-  if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  return `https://${trimmed}`;
-}
 
 const clampSidebarWidth = (value: number) => Math.min(420, Math.max(220, Math.round(value)));
 
@@ -210,24 +193,6 @@ export const useSettingsStore = create<SettingsState>()(
           };
           void hostApi.settings.setMany({ workspaceLabels }).catch(() => { });
           return { workspaceLabels };
-        });
-      },
-      setComposioUrl: (value) => {
-        const composioUrl = normalizeComposioUrl(value);
-        set({ composioUrl });
-        void hostApi.settings.set('composioUrl', composioUrl).catch(() => { });
-      },
-      setComposioKioskAutostart: (composioKioskAutostart) => {
-        set((state) => {
-          // Kiosk-at-startup only makes sense together with launch-at-login, so
-          // enabling it also turns on launch-at-startup (the user can still turn
-          // that off independently afterwards).
-          const nextLaunchAtStartup = composioKioskAutostart ? true : state.launchAtStartup;
-          const patch = nextLaunchAtStartup !== state.launchAtStartup
-            ? { composioKioskAutostart, launchAtStartup: nextLaunchAtStartup }
-            : { composioKioskAutostart };
-          void hostApi.settings.setMany(patch).catch(() => { });
-          return patch;
         });
       },
       markSetupComplete: () => set({ setupComplete: true }),

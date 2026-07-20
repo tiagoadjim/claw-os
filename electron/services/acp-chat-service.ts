@@ -30,6 +30,7 @@ import {
 import { logger } from '../utils/logger';
 import { recordAcpTrace } from './acp-trace';
 import { AcpSessionAccessRegistry, type AcpSessionAccessContext } from './acp-session-access-registry';
+import { getComposioMcpServers } from './composio/composio-config';
 import { expandPath } from '../utils/paths';
 
 type AcpConnection = Pick<ClientSideConnection, 'initialize' | 'newSession' | 'loadSession' | 'prompt' | 'cancel'>;
@@ -295,11 +296,14 @@ export class AcpChatService {
         this.resolvePermissionWaitersForSession(previousSessionKey, cancelledPermissionResponse());
       }
 
+      // Composio (and any future integrations) contribute MCP servers so the
+      // agent can use third-party app tools within this session.
+      const mcpServers = await getComposioMcpServers();
       let acpSessionId = payload.sessionKey;
       if (payload.createIfMissing) {
         const created = await connection.newSession({
           cwd: preparedAccessGrant.executionCwd,
-          mcpServers: [],
+          mcpServers,
           _meta: { sessionKey: payload.sessionKey, prefixCwd: true },
         });
         acpSessionId = created.sessionId;
@@ -307,7 +311,7 @@ export class AcpChatService {
         await connection.loadSession({
           sessionId: payload.sessionKey,
           cwd: preparedAccessGrant.executionCwd,
-          mcpServers: [],
+          mcpServers,
         });
       }
       this.activeAcpSessionId = acpSessionId;

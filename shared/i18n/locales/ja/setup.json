@@ -120,10 +120,6 @@
         "running": "実行中",
         "footer": "設定でスキルをカスタマイズしたり、チャンネルを接続したりできます"
     },
-    "productionMode": {
-        "label": "本番モード",
-        "description": "起動時に Composio を自動的に全画面で開きます（PC 起動時にも実行）。任意です。後で 設定 → Composio で変更できます。"
-    },
     "nav": {
         "next": "次へ",
         "back": "戻る",

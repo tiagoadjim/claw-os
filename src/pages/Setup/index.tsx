@@ -18,7 +18,6 @@ import {
 } from 'lucide-react';
 import { TitleBar } from '@/components/layout/TitleBar';
 import { Button } from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import { useGatewayStore } from '@/stores/gateway';
@@ -828,8 +827,6 @@ interface CompleteContentProps {
 function CompleteContent({ installedSkills }: CompleteContentProps) {
   const { t } = useTranslation(['setup', 'settings']);
   const gatewayStatus = useGatewayStore((state) => state.status);
-  const composioKioskAutostart = useSettingsStore((state) => state.composioKioskAutostart);
-  const setComposioKioskAutostart = useSettingsStore((state) => state.setComposioKioskAutostart);
 
   const installedSkillNames = getDefaultSkills(t)
     .filter((s: DefaultSkill) => installedSkills.includes(s.id))
@@ -860,23 +857,6 @@ function CompleteContent({ installedSkills }: CompleteContentProps) {
                 : 'starting'
               : gatewayStatus.state}
           </span>
-        </div>
-
-        {/* Optional Production Mode (kiosk) toggle */}
-        <div
-          data-testid="setup-production-mode-row"
-          className="flex items-start justify-between gap-4 p-3 rounded-lg bg-surface-input/50"
-        >
-          <div className="min-w-0">
-            <p className="font-medium">{t('productionMode.label')}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">{t('productionMode.description')}</p>
-          </div>
-          <Switch
-            data-testid="setup-production-mode"
-            className="mt-0.5 shrink-0"
-            checked={composioKioskAutostart}
-            onCheckedChange={setComposioKioskAutostart}
-          />
         </div>
       </div>
 

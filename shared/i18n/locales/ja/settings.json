@@ -15,11 +15,21 @@
   },
   "composio": {
     "title": "Composio",
-    "description": "Composio をネイティブに埋め込み、全画面の本番モードで起動します。",
-    "url": "Composio URL",
-    "urlDesc": "読み込む Composio の URL。既定は https://app.composio.dev です。",
-    "kioskAutostart": "起動時に Composio を本番モードで開く",
-    "kioskAutostartDesc": "アプリ起動時に Composio を自動的に全画面（本番モード）で開きます。システム起動時の自動起動も有効になります。オンボーディング中にも切り替えできます。"
+    "description": "Composio を接続すると、OpenClaw エージェントが数百のサードパーティアプリ連携（Gmail、Slack、GitHub など）をツールとして利用できます。",
+    "enable": "Composio ツールを有効にする",
+    "enableDesc": "チャットの OpenClaw エージェントにあなたの Composio MCP サーバーを提供します。",
+    "apiKey": "Composio API キー",
+    "apiKeyDesc": "Composio ダッシュボード → 設定 → API Keys から取得します。ローカルに保存され、X-API-Key ヘッダーとして MCP サーバーにのみ送信されます。",
+    "apiKeyPlaceholder": "Composio API キーを貼り付け",
+    "mcpUrl": "Composio MCP URL",
+    "mcpUrlDesc": "Composio ダッシュボードでアカウント用に生成された MCP サーバーの URL。",
+    "mcpUrlPlaceholder": "https://mcp.composio.dev/…",
+    "keySaved": "API キーを保存しました",
+    "keyNotSet": "API キーは未保存",
+    "clearKey": "キーを消去",
+    "save": "保存",
+    "saved": "Composio 設定を保存しました",
+    "docs": "Composio ドキュメントを開く"
   },
   "aiProviders": {
     "title": "AI プロバイダー",
