@@ -13,6 +13,14 @@
     "launchAtStartup": "システム起動時に自動起動",
     "launchAtStartupDesc": "ログイン時に ClawX を自動的に起動します"
   },
+  "composio": {
+    "title": "Composio",
+    "description": "Composio をネイティブに埋め込み、全画面の本番モードで起動します。",
+    "url": "Composio URL",
+    "urlDesc": "読み込む Composio の URL。既定は https://app.composio.dev です。",
+    "kioskAutostart": "起動時に Composio を本番モードで開く",
+    "kioskAutostartDesc": "アプリ起動時に Composio を自動的に全画面（本番モード）で開きます。システム起動時の自動起動も有効になります。オンボーディング中にも切り替えできます。"
+  },
   "aiProviders": {
     "title": "AI プロバイダー",
     "description": "AI モデルプロバイダーと API キーを設定",

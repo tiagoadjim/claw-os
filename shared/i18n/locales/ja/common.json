@@ -18,7 +18,18 @@
         "renameSessionPlaceholder": "セッションタイトル",
         "saveSessionRename": "セッションタイトルを保存",
         "cancelSessionRename": "名前変更をキャンセル",
-        "imageGeneration": "画像生成"
+        "imageGeneration": "画像生成",
+        "composio": "Composio"
+    },
+    "composio": {
+        "title": "Composio",
+        "reload": "再読み込み",
+        "openExternal": "ブラウザで開く",
+        "kioskMode": "本番モード",
+        "goToPc": "PCへ移動",
+        "errorTitle": "Composio を読み込めませんでした",
+        "errorDesc": "インターネット接続と Composio の URL を確認して、もう一度お試しください。",
+        "retry": "再試行"
     },
     "actions": {
         "save": "保存",

@@ -18,7 +18,18 @@
         "renameSessionPlaceholder": "Название сессии",
         "saveSessionRename": "Сохранить название",
         "cancelSessionRename": "Отменить переименование",
-        "imageGeneration": "Генерация изображений"
+        "imageGeneration": "Генерация изображений",
+        "composio": "Composio"
+    },
+    "composio": {
+        "title": "Composio",
+        "reload": "Обновить",
+        "openExternal": "Открыть в браузере",
+        "kioskMode": "Производственный режим",
+        "goToPc": "Перейти к ПК",
+        "errorTitle": "Не удалось загрузить Composio",
+        "errorDesc": "Проверьте подключение к интернету и адрес Composio, затем повторите попытку.",
+        "retry": "Повторить"
     },
     "actions": {
         "save": "Сохранить",

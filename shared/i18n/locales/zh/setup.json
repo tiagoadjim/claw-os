@@ -120,6 +120,10 @@
         "running": "运行中",
         "footer": "您可以在设置中自定义技能并连接渠道"
     },
+    "productionMode": {
+        "label": "生产模式",
+        "description": "启动时自动全屏打开 Composio（开机时也会运行）。此项为可选，稍后可在 设置 → Composio 中更改。"
+    },
     "nav": {
         "next": "下一步",
         "back": "返回",

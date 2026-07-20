@@ -13,6 +13,14 @@
     "launchAtStartup": "Launch at system startup",
     "launchAtStartupDesc": "Automatically launch ClawX when you log in"
   },
+  "composio": {
+    "title": "Composio",
+    "description": "Embed Composio natively and launch it in full-screen Production Mode.",
+    "url": "Composio URL",
+    "urlDesc": "The Composio web address to load. Defaults to https://app.composio.dev.",
+    "kioskAutostart": "Launch Composio in Production Mode at startup",
+    "kioskAutostartDesc": "Open Composio full-screen (Production Mode) automatically when the app starts. Also enables launch at system startup. You can also toggle this during onboarding."
+  },
   "aiProviders": {
     "title": "AI Providers",
     "description": "Configure your AI model providers and API keys",

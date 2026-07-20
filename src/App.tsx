@@ -3,7 +3,7 @@
  * Handles routing and global providers
  */
 import { Navigate, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { Component, useEffect } from 'react';
+import { Component, useEffect, useRef } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { Toaster } from 'sonner';
 import i18n from './i18n';
@@ -17,6 +17,7 @@ import { Skills } from './pages/Skills';
 import { Cron } from './pages/Cron';
 import { Dreams } from './pages/Dreams';
 import { ImageGenerationPage } from './pages/ImageGeneration';
+import { Composio } from './pages/Composio';
 import { Settings } from './pages/Settings';
 import { Setup } from './pages/Setup';
 import { useSettingsStore } from './stores/settings';
@@ -103,7 +104,9 @@ function App() {
   const theme = useSettingsStore((state) => state.theme);
   const language = useSettingsStore((state) => state.language);
   const setupComplete = useSettingsStore((state) => state.setupComplete);
+  const composioKioskAutostart = useSettingsStore((state) => state.composioKioskAutostart);
   const devModeUnlocked = useSettingsStore((state) => state.devModeUnlocked);
+  const didAutoOpenComposioRef = useRef(false);
   const initGateway = useGatewayStore((state) => state.init);
   const initUpdate = useUpdateStore((state) => state.init);
   const initProviders = useProviderStore((state) => state.init);
@@ -146,6 +149,16 @@ function App() {
       navigate('/setup');
     }
   }, [setupComplete, skipSetupForE2E, location.pathname, navigate]);
+
+  // When Composio kiosk autostart is enabled, open the Composio page once on
+  // launch (the main process has already switched the window into kiosk mode).
+  useEffect(() => {
+    if (didAutoOpenComposioRef.current) return;
+    if (!composioKioskAutostart) return;
+    if (!setupComplete && !skipSetupForE2E) return;
+    didAutoOpenComposioRef.current = true;
+    navigate('/composio');
+  }, [composioKioskAutostart, setupComplete, skipSetupForE2E, navigate]);
 
   // Listen for navigation events from main process
   useEffect(() => {
@@ -211,6 +224,7 @@ function App() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/cron" element={<Cron />} />
             <Route path="/image-generation" element={devModeUnlocked ? <ImageGenerationPage /> : <Navigate to="/" replace />} />
+            <Route path="/composio" element={<Composio />} />
             <Route path="/dreams" element={devModeUnlocked ? <Dreams /> : <Navigate to="/" replace />} />
             <Route path="/settings/*" element={<Settings />} />
             {extraRoutes.map((r) => (

@@ -56,6 +56,10 @@ export interface AppSettings {
   recentWorkspacePaths: string[];
   workspaceLabels: Record<string, string>;
 
+  // Composio
+  composioUrl: string;
+  composioKioskAutostart: boolean;
+
   // Presets
   selectedBundles: string[];
   enabledSkills: string[];
@@ -109,6 +113,10 @@ function createDefaultSettings(): AppSettings {
     chatWorkspacePath: DEFAULT_WORKSPACE_CWD,
     recentWorkspacePaths: [DEFAULT_WORKSPACE_CWD],
     workspaceLabels: {},
+
+    // Composio
+    composioUrl: 'https://app.composio.dev',
+    composioKioskAutostart: false,
 
     // Presets
     selectedBundles: ['productivity', 'developer'],
