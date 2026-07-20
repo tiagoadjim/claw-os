@@ -1,0 +1,49 @@
+{
+  "title": "Connectors",
+  "subtitle": "Give your agent access to the services you already use. No technical setup required.",
+  "poweredBy": "Powered by Composio",
+  "setup": {
+    "title": "Connect your apps",
+    "description": "Add a Composio project key once. Claw OS keeps it outside the visible app interface and creates the agent connection automatically.",
+    "apiKey": "Composio project API key",
+    "placeholder": "Paste your Composio key",
+    "action": "Enable connectors",
+    "saving": "Setting up connectors...",
+    "help": "Get a key from Composio",
+    "secure": "Your key stays on this device and is never shown again."
+  },
+  "search": "Search all services...",
+  "all": "All",
+  "connected": "Connected",
+  "available": "Available",
+  "refresh": "Refresh",
+  "reset": {
+    "action": "Change Composio key",
+    "title": "Change the Composio key?",
+    "description": "Claw OS will remove this local session and ask for a project key again. Your connected accounts remain in Composio.",
+    "confirm": "Change key",
+    "cancel": "Keep current key"
+  },
+  "results": "{{count}} services available",
+  "empty": "No services match your search.",
+  "loading": "Loading the Composio catalog...",
+  "error": "We couldn't load connectors. Check your Composio key and try again.",
+  "card": {
+    "connect": "Connect",
+    "connecting": "Opening sign in...",
+    "disconnect": "Disconnect",
+    "active": "Ready for your agent",
+    "pending": "Finish sign in",
+    "tools": "{{count}} actions",
+    "triggers": "{{count}} triggers",
+    "noAuth": "Works without sign in"
+  },
+  "toast": {
+    "linkOpened": "Finish connecting {{name}} in your browser.",
+    "connected": "{{name}} is connected.",
+    "disconnected": "Connector disconnected.",
+    "setupComplete": "Connectors are ready.",
+    "reset": "Composio is ready for a new key.",
+    "failed": "Connector setup failed: {{error}}"
+  }
+}

@@ -400,5 +400,113 @@
             ]
         }
     },
-    "viewDocs": "View Documentation"
+    "viewDocs": "View Documentation",
+    "featured": {
+        "title": "Connect your assistant",
+        "subtitle": "Pick the app where you want your assistant to reply. Step by step, no technical skills needed.",
+        "connect": "Connect",
+        "connectedBadge": "Connected",
+        "recommended": "Easiest",
+        "taglines": {
+            "telegram": "Ready in about 2 minutes. The easiest way to start.",
+            "whatsapp": "Scan a QR code with your phone, just like WhatsApp Web.",
+            "discord": "Add the assistant to your Discord server."
+        },
+        "moreChannels": "More channels",
+        "moreChannelsHint": "Other apps you can connect. These may need a bit more setup."
+    },
+    "wizard": {
+        "stepOf": "Step {{current}} of {{total}}",
+        "back": "Back",
+        "cancel": "Cancel",
+        "connect": "Connect",
+        "connecting": "Connecting…",
+        "continue": "Continue",
+        "paste": "Paste",
+        "errorTitle": "That didn't work",
+        "errorHint": "Check the steps and try again. Nothing was broken.",
+        "done": "Done",
+        "telegram": {
+            "title": "Connect Telegram",
+            "guideTitle": "First, create your bot",
+            "guideIntro": "In Telegram, bots are created by chatting with an official account called BotFather. It's free and takes about 2 minutes.",
+            "guideSteps": [
+                "Tap the button below to open BotFather in Telegram.",
+                "Send it this message: /newbot",
+                "Give your bot a name (for example: \"My Assistant\").",
+                "Give it a username that ends in \"bot\" (for example: myassistant_bot).",
+                "BotFather will reply with a long code. That code is what you need here."
+            ],
+            "openBotFather": "Open BotFather in Telegram",
+            "haveToken": "I have the code",
+            "tokenTitle": "Paste the code BotFather gave you",
+            "tokenIntro": "It's the long code in BotFather's last message. Tap it in Telegram to copy it, then paste it here.",
+            "tokenLabel": "Your bot's code",
+            "tokenPlaceholder": "123456789:AAH6…",
+            "whoTitle": "Who can talk to your assistant?",
+            "whoEveryone": "Anyone",
+            "whoEveryoneHint": "Anyone who finds your bot on Telegram can chat with it. The easiest way to start — you can change this later.",
+            "whoSpecific": "Only people I choose",
+            "whoSpecificHint": "Paste the Telegram IDs of the allowed people, separated by commas. To find an ID, open @userinfobot in Telegram and press Start.",
+            "openUserInfoBot": "Find my Telegram ID",
+            "idsLabel": "Allowed Telegram IDs",
+            "idsPlaceholder": "123456789, 987654321",
+            "successTitle": "Your assistant is live on Telegram!",
+            "successBody": "Open a chat with @{{bot}} and send it a message — it will reply.",
+            "openBot": "Open my bot in Telegram"
+        },
+        "whatsapp": {
+            "title": "Connect WhatsApp",
+            "guideTitle": "Link WhatsApp with a QR code",
+            "guideIntro": "This works exactly like WhatsApp Web: you scan a code with your phone, and from then on your assistant replies from that WhatsApp account.",
+            "guideSteps": [
+                "Keep your phone nearby, with WhatsApp installed.",
+                "Tap the button below to show the QR code.",
+                "On your phone, open WhatsApp → Settings → Linked devices → Link a device.",
+                "Point your phone's camera at the code on this screen."
+            ],
+            "showQr": "Show QR code",
+            "generating": "Generating QR code…",
+            "qrTitle": "Scan this code with your phone",
+            "qrSteps": [
+                "Open WhatsApp on your phone",
+                "Go to Settings → Linked devices",
+                "Tap \"Link a device\" and scan this code"
+            ],
+            "refreshQr": "Get a new code",
+            "successTitle": "WhatsApp is connected!",
+            "successBody": "Send a message to that WhatsApp account and your assistant will reply."
+        },
+        "discord": {
+            "title": "Connect Discord",
+            "guideTitle": "First, create your bot",
+            "guideIntro": "Discord bots are created on Discord's website. It's free — just follow these steps in order.",
+            "guideSteps": [
+                "Tap the button below and sign in with your Discord account.",
+                "Press \"New Application\", give it a name, and press \"Create\".",
+                "In the left menu, open \"Bot\".",
+                "Turn ON \"Message Content Intent\" (under \"Privileged Gateway Intents\") and save.",
+                "Press \"Reset Token\", then \"Copy\". That code is what you need here."
+            ],
+            "openPortal": "Open Discord's bot page",
+            "haveToken": "I have the code",
+            "tokenTitle": "Paste your bot's code",
+            "tokenIntro": "It's the code you copied after pressing \"Reset Token\".",
+            "tokenLabel": "Your bot's code (token)",
+            "tokenPlaceholder": "MTIzNDU2Nzg5…",
+            "inviteTitle": "Invite the bot to your server",
+            "inviteIntro": "Your bot exists! Now it needs to join your server, and we need your server's ID so it knows where to reply.",
+            "inviteSteps": [
+                "Tap \"Invite to my server\", pick your server and confirm.",
+                "In Discord, open Settings → Advanced and turn on \"Developer Mode\".",
+                "Right-click your server's icon (left sidebar) and choose \"Copy Server ID\".",
+                "Paste the ID below."
+            ],
+            "inviteButton": "Invite to my server",
+            "serverIdLabel": "Your server's ID",
+            "serverIdPlaceholder": "1234567890123456789",
+            "successTitle": "Your assistant is on Discord!",
+            "successBody": "Go to your server and mention @{{bot}} in any channel — it will reply."
+        }
+    }
 }

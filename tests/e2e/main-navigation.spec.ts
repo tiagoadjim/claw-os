@@ -4,16 +4,16 @@ import { closeElectronApp, expect, getStableWindow, test } from './fixtures/elec
 async function readNativeMenuLabels(app: ElectronApplication) {
   return await app.evaluate(({ Menu }) => {
     const menu = Menu.getApplicationMenu();
-    const fileMenu = menu?.items.find((item) => item.label === '文件' || item.label === 'File');
+    const fileMenu = menu?.items.find((item) => item.label === 'Archivo' || item.label === 'File');
     return {
       topLevel: menu?.items.map((item) => item.label) ?? [],
       file: fileMenu?.label,
-      newChat: fileMenu?.submenu?.items.find((item) => item.id === 'new-chat' || item.label === 'New Chat' || item.label === '新对话')?.label,
+      newChat: fileMenu?.submenu?.items.find((item) => item.id === 'new-chat' || item.label === 'New Chat' || item.label === 'Nuevo chat')?.label,
     };
   });
 }
 
-test.describe('ClawX main navigation without setup flow', () => {
+test.describe('Claw OS main navigation without setup flow', () => {
   test('navigates between core pages with setup bypassed', async ({ launchElectronApp }) => {
     const app = await launchElectronApp({ skipSetup: true });
 
@@ -79,12 +79,12 @@ test.describe('ClawX main navigation without setup flow', () => {
 
       await page.getByTestId('sidebar-nav-settings').click();
       await page.getByRole('button', { name: 'English' }).click();
-      await page.getByRole('button', { name: '中文' }).click();
+      await page.getByRole('button', { name: 'Español' }).click();
 
-      await expect(page.getByText('菜单语言已更新')).toBeVisible();
+      await expect(page.getByText('Idioma del menú actualizado')).toBeVisible();
       await expect.poll(() => readNativeMenuLabels(app)).toMatchObject({
-        file: '文件',
-        newChat: '新对话',
+        file: 'Archivo',
+        newChat: 'Nuevo chat',
       });
     } finally {
       await closeElectronApp(app);

@@ -6,7 +6,7 @@ const originalExecPath = process.execPath;
 const originalComSpec = process.env.ComSpec;
 const originalPath = process.env.PATH;
 const originalElectronRunAsNode = process.env.ELECTRON_RUN_AS_NODE;
-const mockedEntryPath = 'C:\\Program Files\\ClawX\\resources\\openclaw\\openclaw.mjs';
+const mockedEntryPath = 'C:\\Program Files\\Claw OS\\resources\\openclaw\\openclaw.mjs';
 
 const {
   mockExistsSync,
@@ -37,7 +37,7 @@ vi.mock('electron', () => ({
     get isPackaged() {
       return mockIsPackagedGetter.value;
     },
-    getName: () => 'ClawX',
+    getName: () => 'Claw OS',
   },
 }));
 
@@ -91,7 +91,7 @@ describe('getOpenClawCliCommand (Windows packaged)', () => {
     resetOpenClawCliMocks();
     setPlatform('win32');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('C:\\Program Files\\ClawX\\resources');
+    setResourcesPath('C:\\Program Files\\Claw OS\\resources');
   });
 
   afterEach(() => {
@@ -102,7 +102,7 @@ describe('getOpenClawCliCommand (Windows packaged)', () => {
     mockExistsSync.mockImplementation((p: string) => /[\\/]cli[\\/]openclaw\.cmd$/i.test(p) || /[\\/]bin[\\/]node\.exe$/i.test(p));
     const { getOpenClawCliCommand } = await import('@electron/utils/openclaw-cli');
     expect(getOpenClawCliCommand()).toBe(
-      "& 'C:\\Program Files\\ClawX\\resources/cli/openclaw.cmd'",
+      "& 'C:\\Program Files\\Claw OS\\resources/cli/openclaw.cmd'",
     );
   });
 
@@ -110,7 +110,7 @@ describe('getOpenClawCliCommand (Windows packaged)', () => {
     mockExistsSync.mockImplementation((p: string) => /[\\/]bin[\\/]node\.exe$/i.test(p));
     const { getOpenClawCliCommand } = await import('@electron/utils/openclaw-cli');
     expect(getOpenClawCliCommand()).toBe(
-      "& 'C:\\Program Files\\ClawX\\resources/bin/node.exe' 'C:\\Program Files\\ClawX\\resources\\openclaw\\openclaw.mjs'",
+      "& 'C:\\Program Files\\Claw OS\\resources/bin/node.exe' 'C:\\Program Files\\Claw OS\\resources\\openclaw\\openclaw.mjs'",
     );
   });
 
@@ -119,7 +119,7 @@ describe('getOpenClawCliCommand (Windows packaged)', () => {
     const { getOpenClawCliCommand } = await import('@electron/utils/openclaw-cli');
     const command = getOpenClawCliCommand();
     expect(command.startsWith('$env:ELECTRON_RUN_AS_NODE=1; & ')).toBe(true);
-    expect(command.endsWith("'C:\\Program Files\\ClawX\\resources\\openclaw\\openclaw.mjs'")).toBe(true);
+    expect(command.endsWith("'C:\\Program Files\\Claw OS\\resources\\openclaw\\openclaw.mjs'")).toBe(true);
   });
 });
 
@@ -160,34 +160,34 @@ describe('getOpenClawCliSpawnSpec', () => {
   it('returns the packaged POSIX wrapper path as the spawn command', async () => {
     setPlatform('linux');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('/opt/ClawX/resources');
-    mockExistsSync.mockImplementation((p: string) => p === '/opt/ClawX/resources/cli/openclaw');
+    setResourcesPath('/opt/Claw OS/resources');
+    mockExistsSync.mockImplementation((p: string) => p === '/opt/Claw OS/resources/cli/openclaw');
 
     const { getOpenClawCliSpawnSpec } = await import('@electron/utils/openclaw-cli');
     const spec = getOpenClawCliSpawnSpec();
 
-    expect(spec).toEqual({ command: '/opt/ClawX/resources/cli/openclaw', args: [], shell: false });
+    expect(spec).toEqual({ command: '/opt/Claw OS/resources/cli/openclaw', args: [], shell: false });
   });
 
   it('uses cmd.exe for a packaged Windows cmd wrapper', async () => {
     setPlatform('win32');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('C:\\Program Files\\ClawX\\resources');
+    setResourcesPath('C:\\Program Files\\Claw OS\\resources');
     mockExistsSync.mockImplementation((p: string) => /[\\/]cli[\\/]openclaw\.cmd$/i.test(p));
 
     const { getOpenClawCliSpawnSpec } = await import('@electron/utils/openclaw-cli');
     const spec = getOpenClawCliSpawnSpec();
 
     expect(spec.command).toBe(process.env.ComSpec || 'cmd.exe');
-    expect(spec.args).toEqual(['/d', '/s', '/c', '"C:\\Program Files\\ClawX\\resources/cli/openclaw.cmd"']);
+    expect(spec.args).toEqual(['/d', '/s', '/c', '"C:\\Program Files\\Claw OS\\resources/cli/openclaw.cmd"']);
     expect(spec.shell).not.toBe(true);
   });
 
   it('uses ELECTRON_RUN_AS_NODE with process.execPath when packaged wrappers are missing', async () => {
-    const execPath = '/Applications/ClawX.app/Contents/MacOS/ClawX';
+    const execPath = '/Applications/Claw OS.app/Contents/MacOS/Claw OS';
     setPlatform('darwin');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('/Applications/ClawX.app/Contents/Resources');
+    setResourcesPath('/Applications/Claw OS.app/Contents/Resources');
     setExecPath(execPath);
     mockExistsSync.mockReturnValue(false);
 
@@ -202,13 +202,13 @@ describe('getOpenClawCliSpawnSpec', () => {
   it('uses bundled node.exe on packaged Windows when the cmd wrapper is missing', async () => {
     setPlatform('win32');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('C:\\Program Files\\ClawX\\resources');
+    setResourcesPath('C:\\Program Files\\Claw OS\\resources');
     mockExistsSync.mockImplementation((p: string) => /[\\/]bin[\\/]node\.exe$/i.test(p));
 
     const { getOpenClawCliSpawnSpec } = await import('@electron/utils/openclaw-cli');
     const spec = getOpenClawCliSpawnSpec();
 
-    expect(spec.command).toBe('C:\\Program Files\\ClawX\\resources/bin/node.exe');
+    expect(spec.command).toBe('C:\\Program Files\\Claw OS\\resources/bin/node.exe');
     expect(spec.args).toEqual([mockedEntryPath]);
     expect(spec.shell).toBeUndefined();
     expect(spec.env).toBeUndefined();
@@ -225,11 +225,11 @@ describe('getOpenClawEmbeddedForkSpec', () => {
   });
 
   it('uses the packaged macOS Helper executable instead of the visible app executable', async () => {
-    const execPath = '/Applications/ClawX.app/Contents/MacOS/ClawX';
-    const helperPath = '/Applications/ClawX.app/Contents/Frameworks/ClawX Helper.app/Contents/MacOS/ClawX Helper';
+    const execPath = '/Applications/Claw OS.app/Contents/MacOS/Claw OS';
+    const helperPath = '/Applications/Claw OS.app/Contents/Frameworks/Claw OS Helper.app/Contents/MacOS/Claw OS Helper';
     setPlatform('darwin');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('/Applications/ClawX.app/Contents/Resources');
+    setResourcesPath('/Applications/Claw OS.app/Contents/Resources');
     setExecPath(execPath);
     mockExistsSync.mockImplementation((p: string) => p === helperPath);
 
@@ -248,7 +248,7 @@ describe('getOpenClawEmbeddedForkSpec', () => {
         env: expect.objectContaining({
           ELECTRON_RUN_AS_NODE: '1',
           OPENCLAW_NO_RESPAWN: '1',
-          OPENCLAW_EMBEDDED_IN: 'ClawX',
+          OPENCLAW_EMBEDDED_IN: 'Claw OS',
           OPENCLAW_EXEC_SHELL_SNAPSHOT: '0',
         }),
       },
@@ -256,7 +256,7 @@ describe('getOpenClawEmbeddedForkSpec', () => {
   });
 
   it('uses a real Node executable from PATH for dev embedded launches instead of Electron', async () => {
-    const execPath = '/Users/zhuoxu/workspace/ClawX/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron';
+    const execPath = '/Users/zhuoxu/workspace/Claw OS/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron';
     setPlatform('darwin');
     setExecPath(execPath);
     process.env.PATH = '/opt/node/bin:/usr/bin';
@@ -272,15 +272,15 @@ describe('getOpenClawEmbeddedForkSpec', () => {
   });
 
   it('fails packaged macOS embedded launch when the Helper executable is missing', async () => {
-    const execPath = '/Applications/ClawX.app/Contents/MacOS/ClawX';
+    const execPath = '/Applications/Claw OS.app/Contents/MacOS/Claw OS';
     setPlatform('darwin');
     mockIsPackagedGetter.value = true;
-    setResourcesPath('/Applications/ClawX.app/Contents/Resources');
+    setResourcesPath('/Applications/Claw OS.app/Contents/Resources');
     setExecPath(execPath);
     mockExistsSync.mockReturnValue(false);
 
     const { getOpenClawEmbeddedForkSpec } = await import('@electron/utils/openclaw-cli');
 
-    expect(() => getOpenClawEmbeddedForkSpec(['acp'])).toThrow('ClawX Helper executable not found');
+    expect(() => getOpenClawEmbeddedForkSpec(['acp'])).toThrow('Claw OS Helper executable not found');
   });
 });

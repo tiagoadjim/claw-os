@@ -59,6 +59,8 @@ export interface AppSettings {
   // Composio
   composioEnabled: boolean;
   composioMcpUrl: string;
+  composioSessionId: string;
+  composioUserId: string;
 
   // Presets
   selectedBundles: string[];
@@ -117,6 +119,8 @@ function createDefaultSettings(): AppSettings {
     // Composio
     composioEnabled: false,
     composioMcpUrl: '',
+    composioSessionId: '',
+    composioUserId: '',
 
     // Presets
     selectedBundles: ['productivity', 'developer'],

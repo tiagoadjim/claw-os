@@ -27,6 +27,7 @@ import {
   ChevronsUpDown,
   ChevronsDownUp,
   Loader2,
+  Cable,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { isGatewayRestarting } from '@/lib/gateway-status';
@@ -390,34 +391,46 @@ export function Sidebar() {
 
   const coreNavItems = [
     {
-      to: '/models',
-      icon: <Cpu className="h-4 w-4" strokeWidth={2} />,
-      label: t('sidebar.models'),
-      testId: 'sidebar-nav-models',
-    },
-    {
-      to: '/agents',
-      icon: <Bot className="h-4 w-4" strokeWidth={2} />,
-      label: t('sidebar.agents'),
-      testId: 'sidebar-nav-agents',
+      to: '/connectors',
+      icon: <Cable className="h-4 w-4" strokeWidth={2} />,
+      label: t('sidebar.connectors'),
+      testId: 'sidebar-nav-connectors',
+      group: 'capabilities' as const,
     },
     {
       to: '/channels',
       icon: <Network className="h-4 w-4" strokeWidth={2} />,
       label: t('sidebar.channels'),
       testId: 'sidebar-nav-channels',
+      group: 'capabilities' as const,
     },
     {
       to: '/skills',
       icon: <Puzzle className="h-4 w-4" strokeWidth={2} />,
       label: t('sidebar.skills'),
       testId: 'sidebar-nav-skills',
+      group: 'capabilities' as const,
     },
     {
       to: '/cron',
       icon: <Clock className="h-4 w-4" strokeWidth={2} />,
       label: t('sidebar.cronTasks'),
       testId: 'sidebar-nav-cron',
+      group: 'capabilities' as const,
+    },
+    {
+      to: '/models',
+      icon: <Cpu className="h-4 w-4" strokeWidth={2} />,
+      label: t('sidebar.models'),
+      testId: 'sidebar-nav-models',
+      group: 'advanced' as const,
+    },
+    {
+      to: '/agents',
+      icon: <Bot className="h-4 w-4" strokeWidth={2} />,
+      label: t('sidebar.agents'),
+      testId: 'sidebar-nav-agents',
+      group: 'advanced' as const,
     },
     ...(devModeUnlocked
       ? [
@@ -426,12 +439,14 @@ export function Sidebar() {
             icon: <ImagePlus className="h-4 w-4" strokeWidth={2} />,
             label: t('common:sidebar.imageGeneration'),
             testId: 'sidebar-nav-image-generation',
+            group: 'advanced' as const,
           },
           {
             to: '/dreams',
             icon: <Moon className="h-4 w-4" strokeWidth={2} />,
             label: t('common:sidebar.openClawDreams'),
             testId: 'sidebar-nav-dreams',
+            group: 'advanced' as const,
           },
         ]
       : []),
@@ -444,6 +459,7 @@ export function Sidebar() {
       icon: <item.icon className="h-4 w-4" strokeWidth={2} />,
       label: item.labelI18nKey ? t(item.labelI18nKey) : item.label,
       testId: item.testId,
+      group: 'advanced' as const,
     })),
   ];
 
@@ -471,8 +487,8 @@ export function Sidebar() {
       >
         {!sidebarCollapsed && (
           <div className="flex items-center gap-2 px-2 overflow-hidden">
-            <img src={logoSvg} alt="ClawX" className="h-5 w-auto shrink-0" />
-            <span className="text-sm font-semibold truncate whitespace-nowrap text-foreground/90">ClawX</span>
+            <img src={logoSvg} alt="Claw OS" className="h-5 w-auto shrink-0" />
+            <span className="text-sm font-semibold truncate whitespace-nowrap text-foreground/90">Claw OS</span>
           </div>
         )}
         <Button
@@ -515,7 +531,20 @@ export function Sidebar() {
           )}
         </button>
 
-        {navItems.map((item) => (
+        {!sidebarCollapsed && (
+          <span className="mt-3 px-2.5 text-tiny font-semibold uppercase tracking-[0.08em] text-muted-foreground/60">
+            {t('sidebar.capabilities')}
+          </span>
+        )}
+        {navItems.filter((item) => item.group === 'capabilities').map((item) => (
+          <NavItem key={item.to} {...item} collapsed={sidebarCollapsed} />
+        ))}
+        {!sidebarCollapsed && (
+          <span className="mt-3 px-2.5 text-tiny font-semibold uppercase tracking-[0.08em] text-muted-foreground/60">
+            {t('sidebar.advanced')}
+          </span>
+        )}
+        {navItems.filter((item) => item.group === 'advanced').map((item) => (
           <NavItem key={item.to} {...item} collapsed={sidebarCollapsed} />
         ))}
       </nav>
