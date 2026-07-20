@@ -164,7 +164,7 @@ describe('AcpChatService', () => {
         windowsHide: true,
         env: expect.objectContaining({
           OPENCLAW_NO_RESPAWN: '1',
-          OPENCLAW_EMBEDDED_IN: 'ClawX',
+          OPENCLAW_EMBEDDED_IN: 'Claw OS',
           OPENCLAW_EXEC_SHELL_SNAPSHOT: '0',
         }),
       }),
@@ -189,7 +189,7 @@ describe('AcpChatService', () => {
     expect(loggerMock.info).toHaveBeenCalledWith('[acp-chat] [stdout] │ startup doctor note');
   });
 
-  it('loads historical sessions without explicit routing metadata so replay can resolve by session key', async () => {
+  it('loads historical sessions with an empty MCP list because bridge mode rejects per-session integrations', async () => {
     const { service, connection } = await createService();
 
     await expect(service.loadSession({ sessionKey: 'agent:pi:s1', workspaceRoot: '/repo', cwd: '/repo' })).resolves.toEqual({
@@ -209,7 +209,7 @@ describe('AcpChatService', () => {
     expect(connection.newSession).not.toHaveBeenCalled();
   });
 
-  it('creates fresh generated sessions with ACP session/new so replay ledgers are complete', async () => {
+  it('creates fresh sessions with an empty MCP list because integrations belong to the Gateway registry', async () => {
     const { service, connection } = await createService();
 
     await expect(service.loadSession({ sessionKey: 'agent:pi:session-123', workspaceRoot: '/repo', cwd: '/repo', createIfMissing: true })).resolves.toEqual({

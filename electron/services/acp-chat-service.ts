@@ -8,6 +8,7 @@ import {
   PROTOCOL_VERSION,
   type Client,
   type ContentBlock,
+  type McpServer,
   type RequestPermissionRequest,
   type RequestPermissionResponse,
   type SessionNotification,
@@ -30,7 +31,6 @@ import {
 import { logger } from '../utils/logger';
 import { recordAcpTrace } from './acp-trace';
 import { AcpSessionAccessRegistry, type AcpSessionAccessContext } from './acp-session-access-registry';
-import { getComposioMcpServers } from './composio/composio-config';
 import { expandPath } from '../utils/paths';
 
 type AcpConnection = Pick<ClientSideConnection, 'initialize' | 'newSession' | 'loadSession' | 'prompt' | 'cancel'>;
@@ -296,9 +296,10 @@ export class AcpChatService {
         this.resolvePermissionWaitersForSession(previousSessionKey, cancelledPermissionResponse());
       }
 
-      // Composio (and any future integrations) contribute MCP servers so the
-      // agent can use third-party app tools within this session.
-      const mcpServers = await getComposioMcpServers();
+      // OpenClaw ACP bridge mode rejects non-empty per-session MCP servers.
+      // Integrations such as Composio are registered in the Gateway-owned
+      // mcp.servers registry instead, where every chat session can use them.
+      const mcpServers: McpServer[] = [];
       let acpSessionId = payload.sessionKey;
       if (payload.createIfMissing) {
         const created = await connection.newSession({

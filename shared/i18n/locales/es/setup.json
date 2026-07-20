@@ -1,0 +1,93 @@
+{
+  "steps": {
+    "welcome": { "title": "Te damos la bienvenida a Claw OS", "description": "Hagamos que tu asistente de IA sea realmente tuyo" },
+    "identity": { "title": "Conoce a tu agente", "description": "Elige un nombre y una personalidad" },
+    "model": { "title": "Dale inteligencia a tu agente", "description": "Usa tu suscripción de ChatGPT u otro modelo" },
+    "connectors": { "title": "Conecta tus aplicaciones", "description": "Permite que tu agente trabaje con los servicios que usas" },
+    "capabilities": { "title": "Elige capacidades", "description": "Comienza con skills y plugins útiles" },
+    "complete": { "title": "Listo para ayudarte", "description": "Tu agente está preparado para su primera tarea" }
+  },
+  "welcome": {
+    "eyebrow": "Tu espacio personal de IA",
+    "title": "Un solo lugar para tu agente de IA",
+    "description": "Conversa, automatiza trabajos recurrentes, conecta tus aplicaciones y agrega nuevas capacidades sin usar una terminal.",
+    "language": "Elige tu idioma",
+    "features": {
+      "talk": "Pide lo que necesitas como se lo pedirías a una persona",
+      "connect": "Conecta las aplicaciones que ya usas",
+      "grow": "Agrega skills cuando las necesites"
+    }
+  },
+  "identity": {
+    "label": "¿Cómo quieres llamar a tu agente?",
+    "placeholder": "Por ejemplo: Luna, Alex, Friday...",
+    "suggestions": "Sugerencias",
+    "descriptionLabel": "¿En qué debería ayudarte?",
+    "descriptionPlaceholder": "Por ejemplo: organizar mi trabajo, redactar mensajes, investigar ideas...",
+    "private": "Esto se guarda únicamente en tu perfil local de Claw OS."
+  },
+  "model": {
+    "chatgptTitle": "Continuar con ChatGPT",
+    "chatgptDescription": "Inicia sesión con tu cuenta de ChatGPT y usa tu suscripción como modelo del agente.",
+    "signIn": "Iniciar sesión con ChatGPT",
+    "signingIn": "Esperando a ChatGPT...",
+    "connected": "ChatGPT conectado",
+    "recommended": "Recomendado",
+    "otherTitle": "Usar otro modelo",
+    "otherDescription": "Después puedes agregar OpenAI API, Anthropic, Gemini, modelos locales y más.",
+    "later": "Configurar más tarde",
+    "manualTitle": "Completa el inicio de sesión",
+    "manualDescription": "Pega la URL final de retorno o el código que muestra tu navegador.",
+    "manualPlaceholder": "Pega la URL de retorno o el código",
+    "submitCode": "Continuar",
+    "cancel": "Cancelar inicio de sesión",
+    "error": "No se pudo iniciar sesión: {{error}}",
+    "subscriptionNote": "Tu suscripción se usa mediante el inicio de sesión oficial de OpenAI. Claw OS nunca ve tu contraseña."
+  },
+  "connectors": {
+    "title": "Haz que tu agente trabaje entre aplicaciones",
+    "description": "Composio ofrece conexiones seguras con más de 1.000 servicios. Puedes conectar Gmail, Notion, Slack, GitHub, calendarios, CRM y cualquier otro servicio de su catálogo en vivo.",
+    "apiKey": "Clave API del proyecto de Composio",
+    "placeholder": "Pega tu clave de Composio",
+    "enable": "Habilitar conectores",
+    "enabling": "Creando tu conexión segura...",
+    "enabled": "Los conectores están listos",
+    "browseLater": "Puedes buscar y conectar servicios individuales desde la solapa Conectores.",
+    "getKey": "Obtener una clave de Composio",
+    "skip": "Conectaré mis aplicaciones más tarde"
+  },
+  "capabilities": {
+    "selectHint": "Elige qué quieres preparar ahora. Puedes cambiarlo cuando quieras.",
+    "selected": "Incluida",
+    "notSelected": "Ahora no",
+    "skillsTitle": "Skills para el día a día",
+    "skillsDescription": "Archivos, documentos, investigación web y herramientas de productividad.",
+    "automationTitle": "Automatizaciones",
+    "automationDescription": "Programa tareas recurrentes y deja que tu agente haga seguimientos.",
+    "pluginsTitle": "Canales y plugins",
+    "pluginsDescription": "Amplía Claw OS y usa tu agente desde aplicaciones de mensajería.",
+    "managed": "Claw OS administra la instalación y las actualizaciones por ti.",
+    "customizeLater": "Puedes cambiar cada capacidad más tarde desde Skills, Canales y Configuración."
+  },
+  "complete": {
+    "title": "{{name}} está listo",
+    "subtitle": "Comienza con un pedido simple. Claw OS mostrará el progreso y pedirá permiso antes de realizar acciones sensibles.",
+    "agent": "Agente",
+    "model": "Modelo",
+    "connectors": "Conectores",
+    "capabilities": "Capacidades",
+    "connected": "Conectado",
+    "ready": "Listas",
+    "capabilityCount": "{{count}} seleccionadas",
+    "later": "Configurar después",
+    "gatewayStarting": "Iniciando el motor del asistente...",
+    "gatewayReady": "Motor del asistente listo",
+    "firstPrompt": "Prueba: «Ayúdame a planificar mi semana»"
+  },
+  "nav": {
+    "next": "Continuar",
+    "back": "Atrás",
+    "skipSetup": "Omitir por ahora",
+    "getStarted": "Comenzar a usar Claw OS"
+  }
+}

@@ -8,6 +8,7 @@ import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { hostApi, type ChannelAccountsResult, type ChannelGroupItem, type GatewayHealthSummary } from '@/lib/host-api';
 import { hostEvents } from '@/lib/host-events';
 import { ChannelConfigModal } from '@/components/channels/ChannelConfigModal';
+import { ChannelWizard, type WizardChannelType } from '@/components/channels/ChannelWizard';
 import { isGatewayStopped } from '@/lib/gateway-status';
 import { cn } from '@/lib/utils';
 import { CHANNEL_ICONS, CHANNEL_NAMES, CHANNEL_META, getPrimaryChannels, type ChannelType } from '@/types/channel';
@@ -90,6 +91,8 @@ const DEFAULT_GATEWAY_HEALTH: GatewayHealthSummary = {
   consecutiveHeartbeatMisses: 0,
 };
 
+const FEATURED_CHANNELS: WizardChannelType[] = ['telegram', 'whatsapp', 'discord'];
+
 function isStaleNotRunningHealthForRunningGateway(gatewayHealth: GatewayHealthSummary, gatewayState: string): boolean {
   return (
     gatewayState === 'running' &&
@@ -112,6 +115,7 @@ export function Channels() {
   const [showDiagnostics, setShowDiagnostics] = useState(false);
   const [diagnosticsLoading, setDiagnosticsLoading] = useState(false);
   const [showConfigModal, setShowConfigModal] = useState(false);
+  const [wizardChannel, setWizardChannel] = useState<WizardChannelType | null>(null);
   const [selectedChannelType, setSelectedChannelType] = useState<ChannelType | null>(null);
   const [selectedAccountId, setSelectedAccountId] = useState<string | undefined>(undefined);
   const [allowExistingConfigInModal, setAllowExistingConfigInModal] = useState(true);
@@ -336,6 +340,9 @@ export function Channels() {
   }, [visibleChannelGroups, displayedChannelTypes, groupedByType]);
 
   const unsupportedGroups = displayedChannelTypes.filter((type) => !configuredTypes.includes(type));
+  const otherChannelTypes = unsupportedGroups.filter(
+    (type) => !FEATURED_CHANNELS.includes(type as WizardChannelType),
+  );
 
   const handleRefresh = () => {
     void fetchPageData({ probe: true, forceAgentsRefresh: true });
@@ -770,13 +777,72 @@ export function Channels() {
             </div>
           )}
 
-          <div className="mb-8">
-            <h2 className="text-3xl font-serif text-foreground mb-6 font-normal tracking-tight">
-              {t('supportedChannels')}
+          <div className="mb-12">
+            <h2 className="text-3xl font-serif text-foreground mb-2 font-normal tracking-tight">
+              {t('featured.title')}
             </h2>
+            <p className="text-sm text-foreground/60 mb-6">{t('featured.subtitle')}</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {FEATURED_CHANNELS.map((type) => {
+                const isConfigured = configuredTypes.includes(type);
+                return (
+                  <button
+                    key={type}
+                    data-testid={`featured-channel-${type}`}
+                    disabled={isConfigured}
+                    onClick={() => setWizardChannel(type)}
+                    className={cn(
+                      'group flex flex-col items-start gap-3 rounded-2xl border p-5 text-left transition-all',
+                      isConfigured
+                        ? 'border-green-500/30 bg-green-500/5 cursor-default'
+                        : 'border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:shadow-md',
+                    )}
+                  >
+                    <div className="flex w-full items-center justify-between">
+                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-black/5 bg-black/5 shadow-sm dark:border-white/10 dark:bg-white/5">
+                        <ChannelLogo type={type} />
+                      </div>
+                      {isConfigured ? (
+                        <Badge className="rounded-full bg-green-600 text-2xs font-medium hover:bg-green-600">
+                          {t('featured.connectedBadge')}
+                        </Badge>
+                      ) : (
+                        type === 'telegram' && (
+                          <Badge
+                            variant="secondary"
+                            className="rounded-full border-0 bg-black/[0.04] text-2xs font-medium text-foreground/70 shadow-none dark:bg-white/[0.08]"
+                          >
+                            {t('featured.recommended')}
+                          </Badge>
+                        )
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">{CHANNEL_NAMES[type]}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        {t(`featured.taglines.${type}`)}
+                      </p>
+                    </div>
+                    {!isConfigured && (
+                      <span className="mt-auto inline-flex h-9 items-center rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-transform group-hover:scale-[1.03]">
+                        {t('featured.connect')}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-3xl font-serif text-foreground mb-2 font-normal tracking-tight">
+              {t('featured.moreChannels')}
+            </h2>
+            <p className="text-sm text-foreground/60 mb-6">{t('featured.moreChannelsHint')}</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-              {unsupportedGroups.map((type) => {
+              {otherChannelTypes.map((type) => {
                 const meta = CHANNEL_META[type];
                 return (
                   <button
@@ -820,6 +886,17 @@ export function Channels() {
           </div>
         </div>
       </div>
+
+      {wizardChannel && (
+        <ChannelWizard
+          channelType={wizardChannel}
+          onClose={() => setWizardChannel(null)}
+          onSaved={async () => {
+            await fetchPageData({ probe: true });
+            scheduleConvergenceRefresh();
+          }}
+        />
+      )}
 
       {showConfigModal && (
         <ChannelConfigModal

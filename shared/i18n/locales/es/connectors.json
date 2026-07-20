@@ -1,0 +1,49 @@
+{
+  "title": "Conectores",
+  "subtitle": "Dale a tu agente acceso a los servicios que ya usas. Sin configuración técnica.",
+  "poweredBy": "Con tecnología de Composio",
+  "setup": {
+    "title": "Conecta tus aplicaciones",
+    "description": "Agrega una clave de proyecto de Composio una sola vez. Claw OS la mantiene fuera de la interfaz visible y crea la conexión del agente automáticamente.",
+    "apiKey": "Clave API del proyecto de Composio",
+    "placeholder": "Pega tu clave de Composio",
+    "action": "Habilitar conectores",
+    "saving": "Configurando conectores...",
+    "help": "Obtener una clave en Composio",
+    "secure": "Tu clave queda en este dispositivo y nunca vuelve a mostrarse."
+  },
+  "search": "Buscar en todos los servicios...",
+  "all": "Todos",
+  "connected": "Conectados",
+  "available": "Disponibles",
+  "refresh": "Actualizar",
+  "reset": {
+    "action": "Cambiar clave de Composio",
+    "title": "¿Cambiar la clave de Composio?",
+    "description": "Claw OS eliminará esta sesión local y volverá a pedir una clave de proyecto. Tus cuentas conectadas seguirán en Composio.",
+    "confirm": "Cambiar clave",
+    "cancel": "Conservar clave actual"
+  },
+  "results": "{{count}} servicios disponibles",
+  "empty": "Ningún servicio coincide con tu búsqueda.",
+  "loading": "Cargando el catálogo de Composio...",
+  "error": "No pudimos cargar los conectores. Revisa tu clave de Composio e inténtalo de nuevo.",
+  "card": {
+    "connect": "Conectar",
+    "connecting": "Abriendo inicio de sesión...",
+    "disconnect": "Desconectar",
+    "active": "Listo para tu agente",
+    "pending": "Completar inicio de sesión",
+    "tools": "{{count}} acciones",
+    "triggers": "{{count}} eventos",
+    "noAuth": "Funciona sin iniciar sesión"
+  },
+  "toast": {
+    "linkOpened": "Termina de conectar {{name}} en tu navegador.",
+    "connected": "{{name}} está conectado.",
+    "disconnected": "Conector desconectado.",
+    "setupComplete": "Los conectores están listos.",
+    "reset": "Composio está listo para una nueva clave.",
+    "failed": "Falló la configuración del conector: {{error}}"
+  }
+}

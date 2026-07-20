@@ -163,8 +163,8 @@ const locales = listLocales();
 const referenceNamespaces = listNamespaces(REFERENCE_LOCALE);
 
 describe('i18n locale parity', () => {
-  it('discovers at least the four shipped locales (en, zh, ja, ru)', () => {
-    expect(locales).toEqual(expect.arrayContaining(['en', 'zh', 'ja', 'ru']));
+  it('ships only English and Spanish locales', () => {
+    expect(locales).toEqual(['en', 'es']);
   });
 
   it.each(locales.filter((l) => l !== REFERENCE_LOCALE))(

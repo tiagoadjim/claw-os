@@ -36,6 +36,10 @@ import { prependPathEntry } from '../utils/env-path';
 import { copyPluginFromNodeModules, fixupPluginManifest, cpSyncSafe, buildCandidateSources, repairTrustedOfficialPluginInstallRecords, syncTrustedOfficialPluginInstallRecord, resolvePluginNpmPackagePath } from '../utils/plugin-install';
 import { CLAWX_OPENAI_IMAGE_PROVIDER_KEY } from '../utils/openclaw-image-relay-constants';
 import { stripSystemdSupervisorEnv } from './config-sync-env';
+import {
+  getComposioGatewayEnv,
+  syncComposioGatewayMcpConfig,
+} from '../services/composio/composio-config';
 import { cleanupAgentsSymlinkedSkills, cleanupStalePluginRuntimeDeps } from './skills-symlink-cleanup';
 import {
   buildPrelaunchMaintenanceCacheKey,
@@ -535,6 +539,7 @@ export async function syncGatewayConfigBeforeLaunch(
   try {
     await measureAsync(timingsMs, 'configFieldSyncMs', async () => {
       await batchSyncConfigFields(appSettings.gatewayToken);
+      await syncComposioGatewayMcpConfig();
     });
   } catch (err) {
     logger.warn('Failed to batch-sync config fields to openclaw.json:', err);
@@ -646,6 +651,7 @@ export async function prepareGatewayLaunchContext(port: number): Promise<Gateway
   const binPathExists = existsSync(binPath);
 
   const { providerEnv, loadedProviderKeyCount } = await measureAsync(timingsMs, 'providerEnvMs', loadProviderEnv);
+  const composioEnv = await measureAsync(timingsMs, 'composioEnvMs', getComposioGatewayEnv);
   const { skipChannels, channelStartupSummary } = await measureAsync(
     timingsMs,
     'channelStartupPolicyMs',
@@ -666,6 +672,7 @@ export async function prepareGatewayLaunchContext(port: number): Promise<Gateway
   const forkEnv: Record<string, string | undefined> = {
     ...stripSystemdSupervisorEnv(baseEnvPatched),
     ...providerEnv,
+    ...composioEnv,
     ...uvEnv,
     ...proxyEnv,
     OPENCLAW_GATEWAY_TOKEN: appSettings.gatewayToken,

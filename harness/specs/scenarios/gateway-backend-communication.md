@@ -37,6 +37,7 @@ requiredRules:
   - provider-model-selection-authority
   - comms-regression
   - docs-sync
+  - composio-session-connectors
 forbiddenPatterns:
   - window.electron.ipcRenderer.invoke in src/pages/**
   - window.electron.ipcRenderer.invoke in src/components/**

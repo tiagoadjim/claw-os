@@ -126,6 +126,9 @@ export type SettingsSnapshot = Partial<{
   chatWorkspacePath: string;
   recentWorkspacePaths: string[];
   workspaceLabels: Record<string, string>;
+  selectedBundles: string[];
+  enabledSkills: string[];
+  disabledSkills: string[];
 }>;
 export type SettingsKey = keyof SettingsSnapshot & string;
 export type SettingsValue = SettingsSnapshot[SettingsKey];
@@ -233,6 +236,7 @@ export type ChannelCredentialValidationResult = HostSuccess & {
   warnings?: string[];
   details?: {
     botUsername?: string;
+    botId?: string;
     guildName?: string;
     channelName?: string;
   };
@@ -771,12 +775,46 @@ export type ComposioConfigResult = {
   mcpUrl: string;
   hasApiKey: boolean;
   apiKeyMasked: string | null;
+  sessionReady: boolean;
 };
 export type ComposioSetConfigPayload = {
   enabled?: boolean;
   mcpUrl?: string;
   apiKey?: string;
 };
+export type ComposioToolkitCategory = { id: string; name: string };
+export type ComposioToolkit = {
+  slug: string;
+  name: string;
+  description: string;
+  logo: string | null;
+  categories: ComposioToolkitCategory[];
+  toolsCount: number;
+  triggersCount: number;
+  authSchemes: string[];
+  noAuth: boolean;
+};
+export type ComposioConnection = {
+  id: string;
+  toolkitSlug: string;
+  status: string;
+  createdAt: string | null;
+  updatedAt: string | null;
+};
+export type ComposioToolkitListPayload = { search?: string; cursor?: string };
+export type ComposioToolkitListResult = {
+  items: ComposioToolkit[];
+  nextCursor: string | null;
+  totalItems: number;
+};
+export type ComposioConnectionListResult = { items: ComposioConnection[] };
+export type ComposioInitializePayload = { apiKey?: string };
+export type ComposioConnectPayload = { toolkitSlug: string };
+export type ComposioConnectResult = HostSuccess & {
+  redirectUrl: string;
+  connectedAccountId: string | null;
+};
+export type ComposioDisconnectPayload = { connectedAccountId: string };
 
 export type HostApiContract = {
   app: {
@@ -977,6 +1015,12 @@ export type HostApiContract = {
   composio: {
     getConfig: () => ComposioConfigResult;
     setConfig: (payload: ComposioSetConfigPayload) => HostSuccess;
+    initialize: (payload?: ComposioInitializePayload) => ComposioConfigResult;
+    listToolkits: (payload?: ComposioToolkitListPayload) => ComposioToolkitListResult;
+    listConnections: () => ComposioConnectionListResult;
+    connect: (payload: ComposioConnectPayload) => ComposioConnectResult;
+    disconnect: (payload: ComposioDisconnectPayload) => HostSuccess;
+    reset: () => HostSuccess;
   };
 };
 

@@ -61,7 +61,9 @@ if (requestedRemoteDebuggingPort) {
   app.commandLine.appendSwitch('remote-debugging-port', requestedRemoteDebuggingPort);
 }
 
-if (isE2EMode && requestedUserDataDir) {
+// Allow explicit profile isolation outside E2E as well. This is useful for
+// previewing first-run onboarding without touching the user's normal profile.
+if (requestedUserDataDir) {
   app.setPath('userData', requestedUserDataDir);
 }
 

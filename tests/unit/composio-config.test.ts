@@ -1,44 +1,46 @@
 import { describe, it, expect } from 'vitest';
-import { buildComposioMcpServers } from '../../electron/services/composio/composio-config';
+import {
+  buildComposioGatewayMcpServer,
+  COMPOSIO_GATEWAY_API_KEY_ENV,
+} from '../../electron/services/composio/composio-config';
 
-describe('buildComposioMcpServers', () => {
+describe('buildComposioGatewayMcpServer', () => {
   const base = { enabled: true, mcpUrl: 'https://mcp.composio.dev/abc', apiKey: 'comp_key_123' };
 
-  it('returns an http MCP server with the X-API-Key header when fully configured', () => {
-    expect(buildComposioMcpServers(base)).toEqual([
-      {
-        type: 'http',
-        name: 'composio',
-        url: 'https://mcp.composio.dev/abc',
-        headers: [{ name: 'X-API-Key', value: 'comp_key_123' }],
-      },
-    ]);
+  it('returns a Gateway MCP server whose secret header references the injected environment', () => {
+    const server = buildComposioGatewayMcpServer(base);
+    expect(server).toEqual({
+      enabled: true,
+      url: 'https://mcp.composio.dev/abc',
+      transport: 'streamable-http',
+      headers: { 'X-API-Key': `\${${COMPOSIO_GATEWAY_API_KEY_ENV}}` },
+    });
+    expect(JSON.stringify(server)).not.toContain('comp_key_123');
   });
 
   it('returns nothing when disabled', () => {
-    expect(buildComposioMcpServers({ ...base, enabled: false })).toEqual([]);
+    expect(buildComposioGatewayMcpServer({ ...base, enabled: false })).toBeNull();
   });
 
   it('returns nothing when the API key is missing', () => {
-    expect(buildComposioMcpServers({ ...base, apiKey: '   ' })).toEqual([]);
+    expect(buildComposioGatewayMcpServer({ ...base, apiKey: '   ' })).toBeNull();
   });
 
   it('returns nothing when the MCP URL is missing', () => {
-    expect(buildComposioMcpServers({ ...base, mcpUrl: '' })).toEqual([]);
+    expect(buildComposioGatewayMcpServer({ ...base, mcpUrl: '' })).toBeNull();
   });
 
-  it('rejects non-http(s) MCP URLs', () => {
-    expect(buildComposioMcpServers({ ...base, mcpUrl: 'ftp://mcp.composio.dev' })).toEqual([]);
+  it('requires an https MCP URL', () => {
+    expect(buildComposioGatewayMcpServer({ ...base, mcpUrl: 'http://mcp.composio.dev' })).toBeNull();
+    expect(buildComposioGatewayMcpServer({ ...base, mcpUrl: 'ftp://mcp.composio.dev' })).toBeNull();
   });
 
-  it('trims the URL and API key', () => {
-    expect(buildComposioMcpServers({ enabled: true, mcpUrl: '  https://x.dev  ', apiKey: '  k  ' })).toEqual([
-      {
-        type: 'http',
-        name: 'composio',
-        url: 'https://x.dev',
-        headers: [{ name: 'X-API-Key', value: 'k' }],
-      },
-    ]);
+  it('trims the URL while keeping the API key out of the registry entry', () => {
+    expect(buildComposioGatewayMcpServer({ enabled: true, mcpUrl: '  https://x.dev  ', apiKey: '  k  ' })).toEqual({
+      enabled: true,
+      url: 'https://x.dev',
+      transport: 'streamable-http',
+      headers: { 'X-API-Key': `\${${COMPOSIO_GATEWAY_API_KEY_ENV}}` },
+    });
   });
 });

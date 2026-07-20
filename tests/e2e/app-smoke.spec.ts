@@ -1,6 +1,6 @@
-import { closeElectronApp, expect, test } from './fixtures/electron';
+import { closeElectronApp, expect, installIpcMocks, test } from './fixtures/electron';
 
-test.describe('ClawX Electron smoke flows', () => {
+test.describe('Claw OS Electron smoke flows', () => {
   test('shows the setup wizard on a fresh profile', async ({ page }) => {
     await expect(page.getByTestId('setup-page')).toBeVisible();
     await expect(page.getByTestId('setup-welcome-step')).toBeVisible();
@@ -17,6 +17,43 @@ test.describe('ClawX Electron smoke flows', () => {
     await expect(page.getByTestId('models-page')).toBeVisible();
     await expect(page.getByTestId('models-page-title')).toBeVisible();
     await expect(page.getByTestId('providers-settings')).toBeVisible();
+  });
+
+  test('guides a non-technical user through identity, model, connectors, and capabilities', async ({ electronApp, page }) => {
+    await installIpcMocks(electronApp, {
+      hostApi: {
+        '["agents","list",null]': {
+          success: true,
+          defaultAgentId: 'main',
+          agents: [{ id: 'main', name: 'main', isDefault: true }],
+          configuredChannelTypes: [],
+          channelOwners: {},
+          channelAccountOwners: {},
+        },
+        '["agents","update",{"id":"main","name":"Nova"}]': {
+          success: true,
+          defaultAgentId: 'main',
+          agents: [{ id: 'main', name: 'Nova', isDefault: true }],
+          configuredChannelTypes: [],
+          channelOwners: {},
+          channelAccountOwners: {},
+        },
+      },
+    });
+
+    await page.getByTestId('setup-next-button').click();
+    await expect(page.getByTestId('setup-agent-name')).toBeVisible();
+    await page.getByTestId('setup-agent-name').fill('Nova');
+    await page.getByTestId('setup-next-button').click();
+    await expect(page.getByTestId('setup-chatgpt-signin')).toBeVisible();
+    await page.getByTestId('setup-next-button').click();
+    await expect(page.getByTestId('setup-composio-key')).toBeVisible();
+    await page.getByTestId('setup-next-button').click();
+    await expect(page.getByText('Everyday skills')).toBeVisible();
+    await expect(page.getByText('Channels and plugins')).toBeVisible();
+    await expect(page.getByTestId('setup-capability-plugins')).toHaveAttribute('aria-pressed', 'true');
+    await page.getByTestId('setup-capability-plugins').click();
+    await expect(page.getByTestId('setup-capability-plugins')).toHaveAttribute('aria-pressed', 'false');
   });
 
   test('persists skipped setup across relaunch for the same isolated profile', async ({ electronApp, launchElectronApp }) => {

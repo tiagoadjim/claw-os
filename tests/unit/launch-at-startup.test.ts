@@ -75,7 +75,7 @@ describe('launch-at-startup integration', () => {
 
     const content = await readFile(autostartPath, 'utf8');
     expect(content).toContain('[Desktop Entry]');
-    expect(content).toContain('Name=ClawX');
+    expect(content).toContain('Name=Claw OS');
     expect(content).toContain('Exec=');
 
     await applyLaunchAtStartupSetting(false);

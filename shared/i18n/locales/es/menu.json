@@ -1,0 +1,59 @@
+{
+  "app": {
+    "about": "Acerca de {{appName}}",
+    "preferences": "Preferencias...",
+    "services": "Servicios",
+    "hide": "Ocultar {{appName}}",
+    "hideOthers": "Ocultar otros",
+    "unhide": "Mostrar todo",
+    "quit": "Salir de {{appName}}"
+  },
+  "file": {
+    "label": "Archivo",
+    "newChat": "Nuevo chat",
+    "close": "Cerrar"
+  },
+  "edit": {
+    "label": "Editar",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "cut": "cortar",
+    "copy": "Copiar",
+    "paste": "Pegar",
+    "pasteAndMatchStyle": "Pegar y combinar estilo",
+    "delete": "Eliminar",
+    "selectAll": "Seleccionar todo"
+  },
+  "view": {
+    "label": "Ver",
+    "reload": "recargar",
+    "forceReload": "Forzar recarga",
+    "toggleDevTools": "Alternar herramientas de desarrollador",
+    "resetZoom": "Tamaño real",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "toggleFullscreen": "Alternar pantalla completa"
+  },
+  "navigate": {
+    "label": "Navegar",
+    "dashboard": "Panel de control",
+    "chat": "Charla",
+    "channels": "Canales",
+    "skills": "Habilidades",
+    "cronTasks": "Tareas cron",
+    "settings": "Configuración"
+  },
+  "window": {
+    "label": "ventana",
+    "minimize": "minimizar",
+    "zoom": "Ampliar",
+    "front": "Llevar a todos al frente",
+    "close": "Cerrar"
+  },
+  "help": {
+    "label": "Ayuda",
+    "documentation": "Documentación",
+    "reportIssue": "Informar problema",
+    "openClawDocumentation": "OpenClaw Documentación"
+  }
+}

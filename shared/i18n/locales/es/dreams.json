@@ -1,0 +1,73 @@
+{
+  "title": "Sueños",
+  "subtitle": "Revise las señales de memoria de OpenClaw, las entradas del diario y el mantenimiento de los sueños de Claw OS.",
+  "openFullUi": "Abrir sueños completos",
+  "gatewayNotReady": "OpenClaw La puerta de enlace aún se está iniciando o está desconectada. Los datos de Dreams se cargarán una vez que se pueda acceder a la puerta de enlace.",
+  "metrics": {
+    "shortTerm": "Entradas a corto plazo",
+    "grounded": "Señales puestas a tierra",
+    "signals": "Señales totales",
+    "promotedToday": "Promovido hoy"
+  },
+  "diary": {
+    "title": "Diario de sueños",
+    "notFound": "DREAMS.md aún no se ha creado.",
+    "empty": "Aún no se han encontrado entradas del diario de sueños.",
+    "undated": "Sin fecha"
+  },
+  "actions": {
+    "title": "Mantenimiento",
+    "enable": "Iniciar sueños",
+    "disable": "Detener los sueños",
+    "backfill": "Diario de relleno",
+    "dedupe": "Diario de deduplicación",
+    "repair": "Reparar caché",
+    "resetGrounded": "Borrar Repetido",
+    "resetDiary": "Restablecer el diario rellenado",
+    "enableSuccess": "Comenzaron los sueños. La puerta de enlace puede reiniciarse para aplicar la programación administrada.",
+    "disableSuccess": "Los sueños se detuvieron. La puerta de enlace puede reiniciarse para eliminar la programación administrada.",
+    "backfillSuccess": "{{count}} entradas del diario de sueños rellenadas.",
+    "dedupeSuccess": "Se eliminaron {{removed}} entradas de sueños duplicadas y se mantuvo {{kept}}.",
+    "repairSuccess": "Reparación del caché de sueños completada.",
+    "resetDiarySuccess": "Se eliminaron {{count}} entradas rellenadas del diario de sueños.",
+    "resetGroundedSuccess": "Se borraron {{count}} entradas repetidas a corto plazo."
+  },
+  "confirmations": {
+    "dedupe": {
+      "title": "¿Desduplicar el diario de sueños?",
+      "message": "Esto reescribe DREAMS.md y elimina solo las entradas exactas duplicadas del diario."
+    },
+    "repair": {
+      "title": "¿Reparar el caché de los sueños?",
+      "message": "Esto archiva archivos de caché de sueños derivados y los reconstruye a partir de entradas limpias. Tu diario de sueños permanece intacto."
+    },
+    "resetDiary": {
+      "title": "¿Restablecer el diario rellenado?",
+      "message": "Esto elimina las entradas del diario rellenadas de DREAMS.md. El contenido escrito manualmente no es el objetivo."
+    },
+    "resetGrounded": {
+      "title": "¿Borrar entradas repetidas a corto plazo?",
+      "message": "Esto borra las entradas de corto plazo que ya fueron reproducidas en señales de memoria conectadas a tierra."
+    }
+  },
+  "phases": {
+    "title": "Fases del sueño",
+    "light": "Luz",
+    "rem": "REM",
+    "deep": "Profundo",
+    "noSchedule": "Sin horario gestionado"
+  },
+  "signals": {
+    "title": "Señales recientes",
+    "storageMode": "Almacenamiento: {{mode}}",
+    "noStorageMode": "Modo de almacenamiento no disponible",
+    "empty": "No hay señales oníricas recientes, a corto plazo o promocionadas.",
+    "unknownSource": "Fuente desconocida",
+    "noSnippet": "No hay fragmento disponible."
+  },
+  "errors": {
+    "openFullUi": "No se puede abrir la interfaz de usuario completa de OpenClaw Dreams.",
+    "configHashMissing": "No se puede actualizar Dreams porque el hash base de configuración no está disponible.",
+    "memoryInitializing": "La memoria de los sueños aún se está inicializando. Vuelva a intentarlo después de que Gateway finalice el inicio."
+  }
+}

@@ -163,7 +163,7 @@ function registerTypedHostHandlers(
     cron: createCronApi({ gatewayManager }),
     skills: createSkillsApi({ clawHubService, gatewayManager }),
     usage: createUsageApi(),
-    composio: createComposioApi(),
+    composio: createComposioApi(gatewayManager),
   });
   registerHostInvokeHandler(hostApiRegistry);
 }

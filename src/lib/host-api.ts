@@ -10,6 +10,9 @@ import type {
   ChatSendWithMediaPayload,
   ClawHubSearchPayload,
   ComposioSetConfigPayload,
+  ComposioConnectPayload,
+  ComposioInitializePayload,
+  ComposioToolkitListPayload,
   CronSessionHistoryPayload,
   DialogMessagePayload,
   DialogOpenPayload,
@@ -64,6 +67,9 @@ export type {
   ChatSendWithMediaResult,
   ClawHubInstalledSkill,
   ComposioConfigResult,
+  ComposioConnection,
+  ComposioToolkit,
+  ComposioToolkitListResult,
   ClawHubListResult,
   ClawHubSearchResult,
   CronSessionHistoryResult,
@@ -384,6 +390,14 @@ export const hostApi = {
   composio: {
     getConfig: () => invokeHost('composio', 'getConfig'),
     setConfig: (patch: ComposioSetConfigPayload) => invokeHost('composio', 'setConfig', patch),
+    initialize: (input?: ComposioInitializePayload) => invokeHost('composio', 'initialize', input),
+    listToolkits: (input?: ComposioToolkitListPayload) => invokeHost('composio', 'listToolkits', input),
+    listConnections: () => invokeHost('composio', 'listConnections'),
+    connect: (input: ComposioConnectPayload) => invokeHost('composio', 'connect', input),
+    disconnect: (connectedAccountId: string) => (
+      invokeHost('composio', 'disconnect', { connectedAccountId })
+    ),
+    reset: () => invokeHost('composio', 'reset'),
   },
 };
 

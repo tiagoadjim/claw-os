@@ -711,7 +711,7 @@ export function ensureClawXOpenAiImagePluginInstalled(): { installed: boolean; w
   return ensurePluginInstalled(
     'clawx-openai-image',
     buildCandidateSources('clawx-openai-image'),
-    'ClawX OpenAI Image',
+    'Claw OS OpenAI Image',
   );
 }
 
@@ -729,7 +729,7 @@ const ALL_BUNDLED_PLUGINS = [
   { fn: ensureDiscordPluginInstalled, label: 'Discord' },
   { fn: ensureQQBotPluginInstalled, label: 'QQBot' },
   { fn: ensureWhatsAppPluginInstalled, label: 'WhatsApp' },
-  { fn: ensureClawXOpenAiImagePluginInstalled, label: 'ClawX OpenAI Image' },
+  { fn: ensureClawXOpenAiImagePluginInstalled, label: 'Claw OS OpenAI Image' },
 ] as const;
 
 /**

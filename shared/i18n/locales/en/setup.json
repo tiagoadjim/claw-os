@@ -1,152 +1,93 @@
 {
-    "steps": {
-        "welcome": {
-            "title": "Welcome to ClawX",
-            "description": "Your AI assistant is ready to be configured"
-        },
-        "runtime": {
-            "title": "Environment Check",
-            "description": "Verifying system requirements"
-        },
-        "provider": {
-            "title": "AI Provider",
-            "description": "Configure your AI service"
-        },
-        "channel": {
-            "title": "Connect a Channel",
-            "description": "Connect a messaging platform (optional)"
-        },
-        "installing": {
-            "title": "Setting Up",
-            "description": "Installing essential components"
-        },
-        "complete": {
-            "title": "All Set!",
-            "description": "ClawX is ready to use"
-        }
-    },
-    "welcome": {
-        "title": "Welcome to ClawX",
-        "description": "ClawX is a graphical interface for OpenClaw, making it easy to use AI assistants across your favorite messaging platforms.",
-        "features": {
-            "noCommand": "Zero command-line required",
-            "modernUI": "Modern, beautiful interface",
-            "bundles": "Pre-installed skill bundles",
-            "crossPlatform": "Cross-platform support"
-        }
-    },
-    "runtime": {
-        "title": "Checking Environment",
-        "viewLogs": "View Logs",
-        "recheck": "Re-check",
-        "nodejs": "Node.js Runtime",
-        "openclaw": "OpenClaw Package",
-        "gateway": "Gateway Service",
-        "startGateway": "Start Gateway",
-        "status": {
-            "checking": "Checking...",
-            "success": "Node.js is available",
-            "error": "Failed",
-            "gatewayRunning": "Running on port {{port}}",
-            "packageReady": "OpenClaw package ready"
-        },
-        "issue": {
-            "title": "Environment issue detected",
-            "desc": "Please ensure OpenClaw is properly installed. Check the logs for details."
-        },
-        "logs": {
-            "title": "Application Logs",
-            "openFolder": "Open Log Folder",
-            "close": "Close",
-            "noLogs": "(No logs available yet)"
-        }
-    },
-    "provider": {
-        "label": "Model Provider",
-        "selectPlaceholder": "Select a provider...",
-        "baseUrl": "Base URL",
-        "modelId": "Model ID",
-        "modelIdDesc": "The model identifier from your provider (e.g. deepseek-ai/DeepSeek-V3)",
-        "codePlanPreset": "Code Plan Preset",
-        "codePlanMode": "Code Plan",
-        "useCodePlanPreset": "Use Ark Code Plan Preset",
-        "codePlanPresetDesc": "Code Plan uses {{baseUrl}} and model {{modelId}}. Do not use the general API endpoint for Code Plan traffic.",
-        "codePlanDoc": "Code Plan docs",
-        "protocol": "Protocol",
-        "protocols": {
-            "openaiCompletions": "OpenAI Completions",
-            "openaiResponses": "OpenAI Responses",
-            "anthropic": "Anthropic Compatible"
-        },
-        "apiKey": "API Key",
-        "save": "Save",
-        "validateSave": "Validate & Save",
-        "valid": "Provider configured successfully",
-        "invalid": "Invalid API key",
-        "storedLocally": "Your API key is stored locally on your machine."
-    },
-    "channel": {
-        "title": "Connect a Messaging Channel",
-        "subtitle": "Choose a platform to connect your AI assistant to. You can add more channels later in Settings.",
-        "configure": "Configure {{name}}",
-        "howTo": "How to connect:",
-        "viewDocs": "View docs",
-        "validationError": "Validation failed",
-        "connected": "{{name}} Connected",
-        "connectedDesc": "Your channel has been configured. It will connect when the Gateway starts.",
-        "configureAnother": "Configure another channel"
-    },
-    "installing": {
-        "title": "Installing Essential Components",
-        "subtitle": "Setting up the tools needed to power your AI assistant",
-        "progress": "Progress",
-        "status": {
-            "pending": "Pending",
-            "installing": "Installing...",
-            "installed": "Installed",
-            "failed": "Failed"
-        },
-        "error": "Setup Error:",
-        "restart": "Try restarting the app",
-        "wait": "This may take a few moments...",
-        "skip": "Skip this step"
-    },
-    "complete": {
-        "title": "Setup Complete!",
-        "subtitle": "ClawX is configured and ready to use. You can now start chatting with your AI assistant.",
-        "provider": "AI Provider",
-        "components": "Components",
-        "gateway": "Gateway",
-        "running": "Running",
-        "footer": "You can customize skills and connect channels in Settings"
-    },
-    "nav": {
-        "next": "Next",
-        "back": "Back",
-        "skipStep": "Skip this step",
-        "skipSetup": "Skip Setup",
-        "getStarted": "Get Started"
-    },
-    "defaultSkills": {
-        "opencode": {
-            "name": "OpenCode",
-            "description": "AI coding assistant backend"
-        },
-        "python-env": {
-            "name": "Python Environment",
-            "description": "Python runtime for skills"
-        },
-        "code-assist": {
-            "name": "Code Assist",
-            "description": "Code analysis and suggestions"
-        },
-        "file-tools": {
-            "name": "File Tools",
-            "description": "File operations and management"
-        },
-        "terminal": {
-            "name": "Terminal",
-            "description": "Shell command execution"
-        }
+  "steps": {
+    "welcome": { "title": "Welcome to Claw OS", "description": "Let's make your AI assistant yours" },
+    "identity": { "title": "Meet your agent", "description": "Choose a name and a personality" },
+    "model": { "title": "Power your agent", "description": "Use your ChatGPT subscription or another model" },
+    "connectors": { "title": "Connect your apps", "description": "Let your agent work with the services you use" },
+    "capabilities": { "title": "Choose capabilities", "description": "Start with useful skills and plugins" },
+    "complete": { "title": "Ready to help", "description": "Your agent is ready for its first task" }
+  },
+  "welcome": {
+    "eyebrow": "Your personal AI workspace",
+    "title": "One place for your AI agent",
+    "description": "Chat, automate recurring work, connect your apps, and add new abilities without touching a terminal.",
+    "language": "Choose your language",
+    "features": {
+      "talk": "Ask naturally, like you would ask a person",
+      "connect": "Connect the apps you already use",
+      "grow": "Add skills whenever you need them"
     }
+  },
+  "identity": {
+    "label": "What should we call your agent?",
+    "placeholder": "For example: Luna, Alex, Friday...",
+    "suggestions": "Suggestions",
+    "descriptionLabel": "What should your agent help with?",
+    "descriptionPlaceholder": "For example: organize my work, draft messages, research ideas...",
+    "private": "This is saved only in your local Claw OS profile."
+  },
+  "model": {
+    "chatgptTitle": "Continue with ChatGPT",
+    "chatgptDescription": "Sign in with your ChatGPT account and use your subscription as your agent's model.",
+    "signIn": "Sign in with ChatGPT",
+    "signingIn": "Waiting for ChatGPT...",
+    "connected": "ChatGPT connected",
+    "recommended": "Recommended",
+    "otherTitle": "Use another model",
+    "otherDescription": "You can add OpenAI API, Anthropic, Gemini, local models, and more after setup.",
+    "later": "Set up later",
+    "manualTitle": "Finish ChatGPT sign in",
+    "manualDescription": "Paste the final callback URL or code from your browser.",
+    "manualPlaceholder": "Paste callback URL or code",
+    "submitCode": "Continue",
+    "cancel": "Cancel sign in",
+    "error": "Sign in failed: {{error}}",
+    "subscriptionNote": "Your subscription is used through OpenAI's official sign-in flow. Claw OS never sees your password."
+  },
+  "connectors": {
+    "title": "Let your agent work across apps",
+    "description": "Composio provides secure connections to 1,000+ services. You can connect Gmail, Notion, Slack, GitHub, calendars, CRMs, and every other service in its live catalog.",
+    "apiKey": "Composio project API key",
+    "placeholder": "Paste your Composio key",
+    "enable": "Enable connectors",
+    "enabling": "Creating your secure connection...",
+    "enabled": "Connectors are ready",
+    "browseLater": "You can browse and connect individual services from the Connectors tab.",
+    "getKey": "Get a Composio key",
+    "skip": "I'll connect apps later"
+  },
+  "capabilities": {
+    "selectHint": "Choose what to prepare now. You can change this at any time.",
+    "selected": "Included",
+    "notSelected": "Not now",
+    "skillsTitle": "Everyday skills",
+    "skillsDescription": "Files, documents, web research, and productivity tools.",
+    "automationTitle": "Automations",
+    "automationDescription": "Schedule recurring tasks and let your agent follow up.",
+    "pluginsTitle": "Channels and plugins",
+    "pluginsDescription": "Extend Claw OS and use your agent from messaging apps.",
+    "managed": "Claw OS manages installation and updates for you.",
+    "customizeLater": "You can change every capability later from Skills, Channels, and Settings."
+  },
+  "complete": {
+    "title": "{{name}} is ready",
+    "subtitle": "Start with a simple request. Claw OS will show progress and ask before sensitive actions.",
+    "agent": "Agent",
+    "model": "Model",
+    "connectors": "Connectors",
+    "capabilities": "Capabilities",
+    "connected": "Connected",
+    "ready": "Ready",
+    "capabilityCount": "{{count}} selected",
+    "later": "Set up later",
+    "gatewayStarting": "Starting the assistant engine...",
+    "gatewayReady": "Assistant engine ready",
+    "firstPrompt": "Try: “Help me plan my week”"
+  },
+  "nav": {
+    "next": "Continue",
+    "back": "Back",
+    "skipSetup": "Skip for now",
+    "getStarted": "Start using Claw OS"
+  }
 }

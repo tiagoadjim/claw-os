@@ -1,0 +1,271 @@
+{
+  "gatewayNotRunning": "Puerta de enlace no funcionando",
+  "gatewayRequired": "La puerta de enlace OpenClaw debe estar ejecutándose para utilizar el chat. Se iniciará automáticamente o puede iniciarlo desde Configuración.",
+  "welcome": {
+    "title": "Claw OS Chat",
+    "subtitle": "¿Qué puedo hacer por ti?",
+    "askQuestions": "Manejar tareas",
+    "askQuestionsDesc": "Trabajar en solicitudes orientadas a tareas.",
+    "creativeTasks": "Ejecución continua",
+    "creativeTasksDesc": "Continúe trabajando en varios pasos",
+    "brainstorming": "Paralelo de múltiples agentes"
+  },
+  "noLogs": "(Aún no hay registros disponibles)",
+  "scrollToLatest": "Volver al fondo",
+  "loadMoreHistory": "Cargar mensajes anteriores",
+  "loadingMoreHistory": "Cargando más…",
+  "toolbar": {
+    "refresh": "Actualizar chat",
+    "currentAgent": "Hablando con {{agent}}",
+    "workspace": "Espacio de trabajo"
+  },
+  "generatedFiles": {
+    "title": "Cambios de archivo ({{count}})",
+    "created": "Creado",
+    "modified": "Modificado",
+    "openFolder": "Abrir carpeta",
+    "viewAll": "Ver todos los cambios"
+  },
+  "fileActivity": {
+    "created": "Creado",
+    "modified": "Modificado",
+    "deleted": "Eliminado",
+    "fileButton": "{{action}} {{path}}",
+    "changeRecord": "Ver cambios para {{path}}",
+    "fileUnavailable": "Archivo no disponible",
+    "outsideWorkspace": "El archivo está fuera del espacio de trabajo."
+  },
+  "runError": {
+    "title": "La llamada al modelo falló"
+  },
+  "acp": {
+    "thought": "pensamiento",
+    "tool": "Herramienta",
+    "expandTool": "Expandir resultado de la herramienta",
+    "collapseTool": "Resultado de la herramienta Contraer",
+    "permission": "Permiso",
+    "plan": "Planificar",
+    "running": "corriendo",
+    "pending": "Pendiente",
+    "completed": "Completado",
+    "failed": "Fallido",
+    "cancelled": "Cancelado",
+    "loadFailed": "No se pudo cargar la sesión",
+    "promptFailed": "No se pudo enviar el mensaje",
+    "unsupportedContent": "Contenido no compatible",
+    "dismiss": "Descartar",
+    "image": "Imagen",
+    "copyImage": "Copiar imagen",
+    "imageCopied": "Imagen copiada",
+    "saveImage": "Guardar imagen como",
+    "imageSaved": "Imagen guardada",
+    "copy": "Copiar respuesta",
+    "copied": "Copiado",
+    "attachment": {
+      "loading": "Accesorio de carga",
+      "unavailable": "Adjunto no disponible",
+      "open": "Abrir {{name}}",
+      "preview": "Vista previa {{name}}",
+      "openFailed": "No se pudo abrir el archivo adjunto"
+    }
+  },
+  "artifactPanel": {
+    "tabs": {
+      "changes": "Cambios",
+      "preview": "Vista previa",
+      "browser": "Espacio de trabajo"
+    },
+    "actions": {
+      "back": "volver a la lista"
+    },
+    "changes": {
+      "heading": "Cambios de archivo ({{count}})",
+      "empty": "Esta sesión aún no tiene cambios de archivos.",
+      "selectFileHint": "Haga clic en una tarjeta de archivo en el chat o en \"Ver cambios\" para abrir una diferencia.",
+      "changeRecord": "Cambiar {{number}}",
+      "diffUnavailable": "Diferencia no disponible para este cambio."
+    },
+    "preview": {
+      "emptyTitle": "Ningún archivo seleccionado",
+      "emptyHint": "Primero haga clic en una tarjeta de archivo en el chat; El archivo seleccionado tendrá una vista previa aquí."
+    }
+  },
+  "filePreview": {
+    "tabs": {
+      "source": "Fuente",
+      "preview": "Vista previa",
+      "changes": "Cambios",
+      "info": "Información"
+    },
+    "actions": {
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "revert": "Revertir",
+      "openInFinder": "Revelar en el administrador de archivos",
+      "openDirectly": "Abrir directamente",
+      "close": "Cerrar"
+    },
+    "info": {
+      "path": "Camino",
+      "size": "Tamaño",
+      "type": "Tipo"
+    },
+    "toast": {
+      "saved": "Guardado en el disco",
+      "saveFailed": "Error al guardar: {{error}}"
+    },
+    "errors": {
+      "outsideSandbox": "Ruta fuera de la zona de pruebas: acceso denegado",
+      "outsideSandboxTitle": "No se pudo leer este archivo",
+      "outsideSandboxHint": "Claw OS no pudo leer esta ruta. Es posible que el archivo se haya movido o eliminado, o que la cuenta actual no tenga permiso. Aún puedes revelarlo en el administrador de archivos.",
+      "readOnlyRoot": "El archivo se encuentra en una ubicación de solo lectura (por ejemplo, una habilidad incluida) y no se puede modificar",
+      "tooLarge": "Archivo demasiado grande ({{size}}); vista previa deshabilitada",
+      "binary": "Archivo binario: vista previa de texto no disponible",
+      "notFound": "Archivo no encontrado",
+      "loadFailed": "Error de carga: {{error}}",
+      "noPreview": "No hay vista previa disponible para este archivo",
+      "unsupportedFormatTitle": "Este formato de archivo no es compatible con la vista previa o las diferencias integradas.",
+      "unsupportedFormatHint": "La vista previa y las diferencias integradas actualmente solo admiten archivos de texto/estilo Markdown que se pueden leer directamente. En su lugar, abra el archivo en el administrador de archivos.",
+      "largeBinaryOpenTitle": "Este archivo es demasiado grande para la vista previa integrada",
+      "largeBinaryOpenHint": "Este archivo es {{size}}. Claw OS no puede obtener una vista previa en línea, pero puede confirmarlo y abrirlo con la aplicación predeterminada del sistema.",
+      "openInFinderFailed": "No se pudo revelar el archivo",
+      "openFailed": "Error al abrir: {{error}}"
+    },
+    "diff": {
+      "noChanges": "No hay cambios para mostrar",
+      "newFile": "Archivo nuevo: no hay original para comparar",
+      "tooLarge": "Archivo demasiado grande: vista de diferencias deshabilitada, cambie a la pestaña Fuente para ver el contenido completo",
+      "unavailable": "El chat actual no capturó una línea de base precisa para este archivo, por lo que no hay diferencias disponibles.",
+      "unavailableHint": "Utilice la pestaña Vista previa para el archivo actual; use Git u otro VCS para obtener una diferencia exacta."
+    },
+    "confirmOpen": {
+      "title": "Abrir archivo",
+      "message": "¿Abrir “{{fileName}}” con la aplicación predeterminada del sistema?",
+      "detail": "Este archivo se abrirá con la aplicación predeterminada del sistema.",
+      "size": "Tamaño de archivo: {{size}}",
+      "cancel": "Cancelar"
+    },
+    "pdf": {
+      "loadFailed": "No se pudo cargar el PDF: {{error}}",
+      "prev": "Pagina anterior",
+      "next": "Página siguiente",
+      "zoomIn": "Acercar",
+      "zoomOut": "alejar",
+      "zoomReset": "Ajustar al ancho",
+      "pageInputAria": "Página actual",
+      "singlePageHint": "Utilice la barra de herramientas para cambiar entre {{total}} páginas"
+    },
+    "sheet": {
+      "loadFailed": "No se pudo cargar la hoja de cálculo: {{error}}",
+      "empty": "Este archivo no tiene hojas de trabajo visibles.",
+      "emptySheet": "Esta hoja de trabajo está vacía",
+      "unnamedSheet": "Hoja {{idx}}",
+      "rowRange": "Filas {{from}}-{{to}} / {{total}}",
+      "prevPage": "Filas anteriores",
+      "nextPage": "Siguientes filas"
+    }
+  },
+  "workspace": {
+    "title": "Espacio de trabajo",
+    "defaultLabel": "Espacio de trabajo predeterminado",
+    "header": "Agente: {{agent}} · Directorio: {{directory}}",
+    "freshBadge": "Actualizado esta ejecución",
+    "pickFile": "Seleccione un archivo de la izquierda para obtener una vista previa",
+    "empty": "El espacio de trabajo está vacío o inaccesible",
+    "truncated": "Directorio truncado: solo se muestran las primeras 5000 entradas",
+    "actions": {
+      "refresh": "Actualizar",
+      "openRootInFinder": "Revelar espacio de trabajo en el administrador de archivos"
+    }
+  },
+  "taskPanel": {
+    "eyebrow": "Ejecutar vista",
+    "title": "Esquema de la tarea",
+    "emptyTitle": "Aún no hay pasos estructurados",
+    "emptyBody": "Una vez que comienza una ejecución, Claw OS mostrará aquí el pensamiento, las llamadas a herramientas y los estados de transferencia.",
+    "status": {
+      "idle": "inactivo",
+      "running_one": "1 paso activo",
+      "running_other": "{{count}} pasos activos"
+    },
+    "stepStatus": {
+      "running": "corriendo",
+      "completed": "hecho",
+      "error": "error"
+    }
+  },
+  "executionGraph": {
+    "title": "Gráfico de ejecución",
+    "branchLabel": "rama",
+    "thinkingLabel": "Pensando",
+    "errorLabel": "error",
+    "imageGenerateLabel": "Generación de imágenes",
+    "agentRun": "{{agent}} ejecución",
+    "collapsedSummary": "{{toolCount}} llamadas a herramientas · {{processCount}} mensajes de proceso",
+    "collapseAction": "Contraer gráfico de ejecución"
+  },
+  "imageGeneration": {
+    "generating": "Generando imagen, por favor espere…",
+    "previewLoading": "Cargando vista previa de la imagen…",
+    "previewUnavailable": "Se completó la generación de la imagen, pero no se pudo cargar la vista previa.",
+    "generatedReady": "La imagen generada está lista.",
+    "generatedReadyWithMissing": "La imagen generada está lista. Algunas imágenes no se pudieron cargar."
+  },
+  "composer": {
+    "attachFiles": "Adjuntar archivos",
+    "pickSkill": "Elige habilidad",
+    "skillButton": "Habilidades",
+    "skillPickerTitle": "Acceso rápido a habilidades para {{agent}}",
+    "skillSearchPlaceholder": "Habilidades de búsqueda",
+    "skillLoading": "Cargando habilidades...",
+    "skillEmpty": "No se encontraron habilidades coincidentes",
+    "pickAgent": "Elige agente",
+    "pickModel": "Elige modelo",
+    "clearTarget": "Borrar agente objetivo",
+    "targetChip": "@{{agent}}",
+    "agentPickerTitle": "Enrutar el siguiente mensaje a otro agente",
+    "modelPickerTitle": "Cambiar modelo para este chat",
+    "modelSwitchFailed": "No se pudo cambiar el modelo: {{error}}",
+    "gatewayDisconnectedPlaceholder": "Puerta de enlace no conectada...",
+    "send": "enviar",
+    "stop": "Detener",
+    "thinking": "Pensando…",
+    "gatewayConnected": "conectado",
+    "gatewayStarting": "comenzando",
+    "gatewayStatus": "puerta de enlace {{state}} | puerto: {{port}} | pid: {{pid}}",
+    "retryFailedAttachments": "Reintentar archivos adjuntos fallidos",
+    "workspacePrefix": "{{workspace}}",
+    "workspacePickerTitle": "Seleccionar carpeta del espacio de trabajo",
+    "workspacePickerButton": "Usar espacio de trabajo",
+    "workspacePickerFailed": "No se pudo abrir el selector de espacio de trabajo",
+    "defaultWorkspaceOption": "Espacio de trabajo predeterminado",
+    "chooseOtherWorkspaceOption": "Elija otra carpeta...",
+    "folderDropUnsupported": "No se pudo adjuntar esta carpeta. Arrástrelo nuevamente o pegue la ruta de la carpeta en su mensaje.",
+    "folderAttachment": "Carpeta",
+    "skillPreviewTooltip": "Vista previa HABILIDAD.md",
+    "skillPreviewNotFound": "No se pudo encontrar esta habilidad. Abra el selector de habilidades para actualizar la lista."
+  },
+  "sessionList": {
+    "title": "Sesiones",
+    "collapseAll": "Contraer todo",
+    "expandAll": "Expandir todo",
+    "loadMore": "Cargar más",
+    "loadMoreForWorkspace": "Cargar {{count}} sesiones más en {{workspace}}",
+    "workspaceToggle": "Alternar espacio de trabajo {{workspace}}",
+    "renameWorkspace": "Cambiar el nombre del espacio de trabajo {{workspace}}",
+    "workspaceName": "Nombre del espacio de trabajo",
+    "saveWorkspaceRename": "Guardar el nombre del espacio de trabajo",
+    "cancelWorkspaceRename": "Cancelar el cambio de nombre del espacio de trabajo"
+  },
+  "historyBuckets": {
+    "today": "hoy",
+    "withinWeek": "últimos 7 días",
+    "withinMonth": "últimos 30 días",
+    "older": "mayor"
+  },
+  "questionDirectory": {
+    "title": "Directorio de preguntas",
+    "fallback": "Pregunta {{number}}",
+    "moreHint": "{{count}} no se muestran más preguntas"
+  }
+}

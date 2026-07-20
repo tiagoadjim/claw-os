@@ -1,21 +1,28 @@
 /**
  * Composio integration config (Main process).
  *
- * Composio is wired into OpenClaw as an MCP server: the user pastes their
- * Composio API key and the MCP URL generated for their account, and we expose
- * that server to OpenClaw agents (via the ACP session `mcpServers`) so they can
- * use Composio's third-party app integrations (Gmail, Slack, GitHub, …) as
- * tools.
+ * Composio is wired into OpenClaw through a Tool Router MCP session. The user
+ * provides a Composio project key; Electron Main creates the session, stores
+ * its MCP URL, and registers it in OpenClaw's Gateway-owned `mcp.servers`.
  *
  * The API key is a secret, so it lives in the Main-owned provider store and is
  * never returned to the renderer in raw form (only masked / a boolean).
  */
-import type { McpServer } from '@agentclientprotocol/sdk';
 import { getClawXProviderStore } from '../providers/store-instance';
 import { getSetting, setSetting } from '../../utils/store';
+import { readOpenClawConfig, writeOpenClawConfig } from '../../utils/channel-config';
+import { withConfigLock } from '../../utils/config-mutex';
 
 const COMPOSIO_API_KEY_STORE_KEY = 'composioApiKey';
 const COMPOSIO_MCP_SERVER_NAME = 'composio';
+export const COMPOSIO_GATEWAY_API_KEY_ENV = 'CLAW_OS_COMPOSIO_API_KEY';
+
+export interface ComposioGatewayMcpServer {
+  enabled: true;
+  url: string;
+  transport: 'streamable-http';
+  headers: Record<string, string>;
+}
 
 export interface ComposioConfig {
   enabled: boolean;
@@ -28,6 +35,7 @@ export interface ComposioConfigView {
   mcpUrl: string;
   hasApiKey: boolean;
   apiKeyMasked: string | null;
+  sessionReady: boolean;
 }
 
 export interface ComposioConfigPatch {
@@ -71,12 +79,16 @@ export async function getComposioConfig(): Promise<ComposioConfig> {
 }
 
 export async function getComposioConfigView(): Promise<ComposioConfigView> {
-  const config = await getComposioConfig();
+  const [config, sessionId] = await Promise.all([
+    getComposioConfig(),
+    getSetting('composioSessionId'),
+  ]);
   return {
     enabled: config.enabled,
     mcpUrl: config.mcpUrl,
     hasApiKey: config.apiKey.length > 0,
     apiKeyMasked: maskApiKey(config.apiKey),
+    sessionReady: Boolean(sessionId && config.mcpUrl),
   };
 }
 
@@ -93,31 +105,65 @@ export async function setComposioConfig(patch: ComposioConfigPatch): Promise<voi
 }
 
 /**
- * Pure builder: the ACP MCP servers Composio contributes for a given config.
- * Returns an empty list unless Composio is enabled and both an https MCP URL
- * and an API key are present.
+ * Pure builder for the Gateway-owned OpenClaw MCP registry entry. The API key
+ * is referenced through the Gateway environment so it never lands in
+ * openclaw.json as plaintext.
  */
-export function buildComposioMcpServers(config: ComposioConfig): McpServer[] {
-  if (!config.enabled) return [];
+export function buildComposioGatewayMcpServer(config: ComposioConfig): ComposioGatewayMcpServer | null {
+  if (!config.enabled) return null;
   const url = config.mcpUrl.trim();
   const apiKey = config.apiKey.trim();
-  if (!url || !apiKey) return [];
-  if (!/^https?:\/\//i.test(url)) return [];
-  return [
-    {
-      type: 'http',
-      name: COMPOSIO_MCP_SERVER_NAME,
-      url,
-      headers: [{ name: 'X-API-Key', value: apiKey }],
-    },
-  ];
+  if (!url || !apiKey) return null;
+  if (!/^https:\/\//i.test(url)) return null;
+  return {
+    enabled: true,
+    url,
+    transport: 'streamable-http',
+    headers: { 'X-API-Key': `\${${COMPOSIO_GATEWAY_API_KEY_ENV}}` },
+  };
 }
 
-/** Resolve the Composio MCP servers from persisted config (best-effort). */
-export async function getComposioMcpServers(): Promise<McpServer[]> {
-  try {
-    return buildComposioMcpServers(await getComposioConfig());
-  } catch {
-    return [];
-  }
+/** Secret environment injected only into the OpenClaw Gateway process. */
+export async function getComposioGatewayEnv(): Promise<Record<string, string>> {
+  const config = await getComposioConfig();
+  return buildComposioGatewayMcpServer(config)
+    ? { [COMPOSIO_GATEWAY_API_KEY_ENV]: config.apiKey.trim() }
+    : {};
+}
+
+/**
+ * Reconcile Claw OS' managed Composio entry without disturbing operator-owned
+ * MCP servers. Returns true only when openclaw.json changed.
+ */
+export async function syncComposioGatewayMcpConfig(): Promise<boolean> {
+  const desired = buildComposioGatewayMcpServer(await getComposioConfig());
+  return withConfigLock(async () => {
+    const config = await readOpenClawConfig();
+    const existingMcp = config.mcp && typeof config.mcp === 'object' && !Array.isArray(config.mcp)
+      ? config.mcp as Record<string, unknown>
+      : {};
+    const existingServers = existingMcp.servers
+      && typeof existingMcp.servers === 'object'
+      && !Array.isArray(existingMcp.servers)
+      ? existingMcp.servers as Record<string, unknown>
+      : {};
+    const current = existingServers[COMPOSIO_MCP_SERVER_NAME];
+
+    if (desired && JSON.stringify(current) === JSON.stringify(desired)) return false;
+    if (!desired && current === undefined) return false;
+
+    const nextServers = { ...existingServers };
+    if (desired) nextServers[COMPOSIO_MCP_SERVER_NAME] = desired;
+    else delete nextServers[COMPOSIO_MCP_SERVER_NAME];
+
+    if (Object.keys(nextServers).length > 0) {
+      config.mcp = { ...existingMcp, servers: nextServers };
+    } else {
+      const { servers: _servers, ...mcpWithoutServers } = existingMcp;
+      if (Object.keys(mcpWithoutServers).length > 0) config.mcp = mcpWithoutServers;
+      else delete config.mcp;
+    }
+    await writeOpenClawConfig(config);
+    return true;
+  });
 }
